@@ -1,0 +1,26 @@
+#!/bin/sh
+alias com="git add . && git commit -m"
+alias push="git push"
+alias ok="if ping -c 1 8.8.8.8 >/dev/null 2>&1; then echo 'OK'; else echo 'NOT OK'; fi"
+alias spot="if ! ps aux | grep "[s]potifyd"; then spotifyd --no-daemon & disown $!; fi; clear; spt; clear; pkill spotifyd"
+alias leaks="valgrind --leak-check=full --show-reachable=yes"
+alias cam="DISPLAY= mpv --quiet --vo=caca --untimed --profile=low-latency --no-cache /dev/video0"
+alias sm64="export WDIR=$(pwd) && cd ~/Games/sm64-port/build/us_pc/ && ./sm64.us.f3dex2e ; cd $WDIR"
+alias wolf3d="export WDIR=$(pwd) && cd /home/persona/wolf3d && ./run.sh ; cd $WDIR"
+alias battery="sudo tlp bat -q && sudo powertop -q --auto-tune && clear"
+alias ls="ls --color"
+alias vi="nvim"
+alias off="shutdown now"
+alias colortest="msgcat --color=test"
+alias ytdl="cat /home/persona/Vids/.list | youtube-dl -a - -q -f 'best[height<=720]' -o '/home/persona/Vids/%(title)s' & disown && rm /home/persona/Vids/.list"
+alias yt="ls -1 /home/persona/Vids/ > /tmp/mmenu && mmenu && </tmp/mmenu xargs -i mpv /home/persona/Vids/{}"
+alias ytrm="ls -1 /home/persona/Vids/ > /tmp/mmenu && mmenu && </tmp/mmenu xargs -i rm /home/persona/Vids/{}"
+alias x="startx -- -nocursor"
+
+sheet() {
+	rm /temp/ly.*
+	midi2ly $1 --output /tmp/ly.ly
+	lilypond -o sheet --pdf /tmp/ly.ly
+	zathura sheet.pdf
+	rm sheet.*
+}
