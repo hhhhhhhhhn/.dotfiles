@@ -6,7 +6,7 @@ alias spot="if ! ps aux | grep "[s]potifyd"; then spotifyd --no-daemon & disown 
 alias leaks="valgrind --leak-check=full --show-reachable=yes"
 alias cam="DISPLAY= mpv --quiet --vo=caca --untimed --profile=low-latency --no-cache /dev/video0"
 alias sm64="export WDIR=$(pwd) && cd ~/Games/sm64-port/build/us_pc/ && ./sm64.us.f3dex2e ; cd $WDIR"
-alias wolf3d="export WDIR=$(pwd) && cd /home/persona/wolf3d && ./run.sh ; cd $WDIR"
+alias wolf3d="export WDIR=$(pwd) && cd ~/Games/wolf3d && ./run.sh ; cd $WDIR"
 alias battery="sudo tlp bat -q && sudo powertop -q --auto-tune && clear"
 alias ls="ls --color"
 alias vi="nvim"
@@ -16,6 +16,10 @@ alias ytdl="cat /home/persona/Vids/.list | youtube-dl -a - -q -f 'best[height<=7
 alias yt="ls -1 /home/persona/Vids/ > /tmp/mmenu && mmenu && </tmp/mmenu xargs -i mpv /home/persona/Vids/{}"
 alias ytrm="ls -1 /home/persona/Vids/ > /tmp/mmenu && mmenu && </tmp/mmenu xargs -i rm /home/persona/Vids/{}"
 alias x="startx -- -nocursor"
+
+r() {
+	mv $1 ~/.bin
+}
 
 sheet() {
 	rm /temp/ly.*
