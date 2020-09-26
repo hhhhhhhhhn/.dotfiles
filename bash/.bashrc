@@ -1,12 +1,12 @@
 #
-# ~/.bash_profile
+# ~/.bashrc
 #
 
 [[ -f ~/.bash_alias ]] && . ~/.bash_alias
 
 set -o vi
 
-export PATH="$PATH:~/Scripts"
+export PATH="$PATH:/bin:~/Scripts"
 
 export EDITOR="nvim"
 export LESS="-+S "

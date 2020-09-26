@@ -16,6 +16,9 @@ alias ytdl="cat /home/persona/Vids/.list | youtube-dl -a - -q -f 'best[height<=7
 alias yt="ls -1 /home/persona/Vids/ > /tmp/mmenu && mmenu && </tmp/mmenu xargs -i mpv /home/persona/Vids/{}"
 alias ytrm="ls -1 /home/persona/Vids/ > /tmp/mmenu && mmenu && </tmp/mmenu xargs -i rm /home/persona/Vids/{}"
 alias x="startx -- -nocursor"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 r() {
 	mv $1 ~/.bin

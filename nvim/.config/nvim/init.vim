@@ -14,4 +14,7 @@ inoremap <expr> ) (CharAtCursor() == ")" ? "<right>" : ")")
 inoremap <expr> } (CharAtCursor() == "}" ? "<right>" : "}")
 inoremap <expr> ] (CharAtCursor() == "]" ? "<right>" : "]")
 
-autocmd FileType markdown setlocal wrap linebreak nolist
+inoremap <down> <esc>gja
+inoremap <up> <esc>gka
+nnoremap <down> gj
+nnoremap <up> gk
