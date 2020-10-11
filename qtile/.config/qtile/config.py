@@ -109,7 +109,7 @@ layouts = [
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(ratio_increment=0.02, ratio=0.5),
+    layout.Tile(ratio_increment=0.02, ratio=0.5, border_focus="#bd93f9"),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
