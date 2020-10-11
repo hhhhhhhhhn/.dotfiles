@@ -71,7 +71,15 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
-    Key([mod], "b", lazy.hide_show_bar("bottom"), desc="Hide bar.")
+    Key([mod], "b", lazy.hide_show_bar("bottom"), desc="Hide bar."),
+
+    # Tile layout
+    Key([mod, "shift"], "k", lazy.layout.increase_ratio(), desc="Grow master."),
+
+    Key([mod, "shift"], "j", lazy.layout.decrease_ratio(), desc="Shrink master."),
+
+    # Spawn
+    Key([mod], "b", lazy.spawn("brave"))
 ]
 
 groups = [Group(i) for i in "asdfuiop"]
@@ -101,7 +109,7 @@ layouts = [
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(),
+    layout.Tile(ratio_increment=0.02, ratio=0.5),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
