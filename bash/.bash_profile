@@ -1,4 +1,5 @@
-#
+export SHELLOPTS #
+set -o igncr #
 # ~/.bash_profile
 #
 
