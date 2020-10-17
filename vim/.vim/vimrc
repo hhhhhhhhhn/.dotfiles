@@ -5,6 +5,8 @@ syntax on
 set autoindent
 set smartindent
 set nobackup
+set ffs=unix
+set ff=unix
 
 colorscheme peachpuff
 set tabstop=4 shiftwidth=4 colorcolumn=81

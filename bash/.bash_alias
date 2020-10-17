@@ -9,7 +9,7 @@ alias sm64="export WDIR=$(pwd) && cd ~/Games/sm64-port/build/us_pc/ && ./sm64.us
 alias wolf3d="export WDIR=$(pwd) && cd ~/Games/wolf3d && ./run.sh ; cd $WDIR"
 alias battery="sudo tlp bat -q && sudo powertop -q --auto-tune && clear"
 alias ls="ls --color"
-alias vi="nvim"
+alias vi="vim"
 alias off="shutdown now"
 alias colortest="msgcat --color=test"
 alias ytdl="cat /home/persona/Vids/.list | youtube-dl -a - -q -f 'best[height<=720]' -o '/home/persona/Vids/%(title)s' & disown && rm /home/persona/Vids/.list"
