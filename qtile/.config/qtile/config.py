@@ -79,7 +79,10 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.decrease_ratio(), desc="Shrink master."),
 
     # Spawn
-    Key([mod], "b", lazy.spawn("brave"))
+    Key([mod], "c", lazy.spawn("brave")),
+    Key([mod], "Up", lazy.spawn("amixer -D pulse sset Master 5%+")),
+    Key([mod], "Down", lazy.spawn("amixer -D pulse sset Master 5%-")),
+    Key([mod], "m", lazy.spawn("amixer -D pulse sset Master toggle")),
 ]
 
 groups = [Group(i) for i in "asdfuiop"]
@@ -100,6 +103,7 @@ for i in groups:
     ])
 
 layouts = [
+    layout.Tile(ratio_increment=0.02, ratio=0.5, border_focus="#bd93f9"),
     layout.Max(),
     # layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
@@ -109,7 +113,6 @@ layouts = [
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(ratio_increment=0.02, ratio=0.5, border_focus="#bd93f9"),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
@@ -124,7 +127,7 @@ extension_defaults = widget_defaults.copy()
 
 bottom=bar.Bar(
     [
-        widget.CurrentLayout(),
+        # widget.CurrentLayout(),
         widget.GroupBox(),
         widget.Prompt(),
         widget.WindowName(),

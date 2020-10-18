@@ -7,6 +7,7 @@ set smartindent
 set nobackup
 set ffs=unix
 set ff=unix
+set hlsearch
 
 colorscheme peachpuff
 set tabstop=4 shiftwidth=4 colorcolumn=81
@@ -15,7 +16,7 @@ function! CharAtCursor()
   return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
 endfunction
 
-nnoremap <esc> :noh<return><esc>
+"nnoremap <esc> :noh<return><esc> (breaks)
 
 inoremap ( ()<left>
 inoremap { {}<left>
