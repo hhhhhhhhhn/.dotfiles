@@ -1,3 +1,24 @@
+""" Plugin section
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'mattn/emmet-vim'
+Plugin 'ap/vim-css-color'
+Plugin 'preservim/nerdcommenter'
+Plugin 'dense-analysis/ale'
+
+call vundle#end()
+
+""" Plugin related section
+
+
+""" Vanilla section
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
 filetype plugin on
 filetype indent on
 syntax on
