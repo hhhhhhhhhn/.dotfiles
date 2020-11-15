@@ -4,7 +4,7 @@
 
 set -o vi
 
-export PATH="$PATH:/bin:~/Scripts"
+export PATH="$PATH:/bin:~/.local/bin:~/Scripts"
 
 export EDITOR="nvim"
 export LESS="-+S "
