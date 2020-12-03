@@ -38,6 +38,7 @@ function! CharAtCursor()
 endfunction
 
 "nnoremap <esc> :noh<return><esc> (breaks)
+set backspace=indent,eol,start
 
 inoremap ( ()<left>
 inoremap { {}<left>
