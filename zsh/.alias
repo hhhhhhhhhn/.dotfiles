@@ -2,7 +2,7 @@
 alias com="git add . && git commit -m"
 alias push="git push"
 alias ok="if ping -c 1 8.8.8.8 >/dev/null 2>&1; then echo 'OK'; else echo 'NOT OK'; fi"
-alias spot="if ! ps aux | grep "[s]potifyd"; then spotifyd --no-daemon & disown $!; fi; clear; spt; clear; pkill spotifyd"
+alias spot='if ! ps aux | grep "[s]potifyd"; then spotifyd --no-daemon & disown $!; fi; clear; spt; clear; pkill spotifyd'
 alias leaks="valgrind --leak-check=full --show-reachable=yes"
 alias cam="DISPLAY= mpv --quiet --vo=caca --untimed --profile=low-latency --no-cache /dev/video0"
 alias sm64="export WDIR=$(pwd) && cd ~/Games/sm64-port/build/us_pc/ && ./sm64.us.f3dex2e ; cd $WDIR"
