@@ -18,7 +18,6 @@ export COLORS_DIR="/home/persona/.config/colors"
 
 color solarized
 clear
-neofetch
 
 [ -f ~/.alias ] && . ~/.alias
 [ -f ~/.zlocal ] && . ~/.zlocal
