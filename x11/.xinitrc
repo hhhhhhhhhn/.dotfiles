@@ -7,6 +7,8 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # merge in defaults and keymaps
 
+setxkbmap -layout latam
+
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 
@@ -24,8 +26,6 @@ fi
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
-
-setxkbmap -layout latam
 
 # start some nice programs
 
