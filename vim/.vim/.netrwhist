@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/persona/.urxvt/ext'
+let g:netrw_dirhist_4='/home/persona/.urxvt'
 let g:netrw_dirhist_3='/home/persona/.dotfiles'
 let g:netrw_dirhist_2='/home/persona/Scripts'
 let g:netrw_dirhist_1='/home/persona/.dotfiles/xmonad'
