@@ -19,6 +19,7 @@ export YT_DIR="/home/persona/Youtube/"
 export YT_FILE="/home/persona/Youtube/sub"
 
 color solarized
+font
 clear
 
 [ -f ~/.alias ] && . ~/.alias
