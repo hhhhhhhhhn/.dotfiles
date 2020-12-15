@@ -5,7 +5,7 @@
 set -o emacs
 
 export TERM="xterm-256color"
-export PROMPT='%(?..%F{red}%? %f)%(!.%F{red}.)%B[%T %~]$ %b%F{reset}'
+export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{magenta}]$ %b%F{reset}'
 
 export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts"
 

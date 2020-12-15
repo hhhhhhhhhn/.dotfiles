@@ -25,21 +25,21 @@
 #define S_green         #859900
 
 *color0:                S_base02
-*color8:                S_base03
+*color8:                S_base02
 *color1:                S_red
-*color9:                S_orange
+*color9:                S_red
 *color2:                S_green
-*color10:               S_base01
+*color10:               S_green
 *color3:                S_yellow
-*color11:               S_base00
+*color11:               S_yellow
 *color4:                S_blue
-*color12:               S_base0
+*color12:               S_blue
 *color5:                S_magenta
-*color13:               S_violet
+*color13:               S_magenta
 *color6:                S_cyan
-*color14:               S_base1
+*color14:               S_cyan
 *color7:                S_base2
-*color15:               S_base3
+*color15:               S_base2
 
 
 ! General settings
