@@ -10,6 +10,7 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad.Layout.NoBorders
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -68,7 +69,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch gmrun
 --    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
-    , ((modm,                 xK_c     ), spawn "brave-browser")
+    , ((modm,                 xK_c     ), spawn "brave")
     -- close focused window
     , ((modm,                 xK_x     ), kill)
 
@@ -182,7 +183,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Full
+myLayout = tiled ||| noBorders Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
