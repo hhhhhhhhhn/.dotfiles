@@ -12,12 +12,15 @@ alias vi="vim"
 alias off="shutdown now"
 alias colortest="msgcat --color=test"
 alias x="startx -- -nocursor"
+alias ll="ls -lh"
+alias lla="ls -lha"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
 r() {
-	mv $1 ~/.bin
+	rm -rf "$HOME/.bin/$1"
+	mv "$1" -f "$HOME/.bin/"
 }
 
 sheet() {
