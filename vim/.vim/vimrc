@@ -22,7 +22,6 @@ call vundle#end()
 
 
 """ Vanilla section
-nnoremap <SPACE> <Nop>
 let mapleader=" "
 
 filetype plugin on
@@ -54,16 +53,11 @@ endfunction
 "nnoremap <esc> :noh<return><esc> (breaks)
 set backspace=indent,eol,start
 
-inoremap ( ()<left>
-inoremap { {}<left>
-inoremap [ []<left>
-
-inoremap <expr> " (CharAtCursor() == '"' ? "<right>" : '""<left>')
-inoremap <expr> ) (CharAtCursor() == ")" ? "<right>" : ")")
-inoremap <expr> } (CharAtCursor() == "}" ? "<right>" : "}")
-inoremap <expr> ] (CharAtCursor() == "]" ? "<right>" : "]")
-
 inoremap <down> <esc>gja
 inoremap <up> <esc>gka
 nnoremap <down> gj
 nnoremap <up> gk
+
+nnoremap <leader>h :noh
+
+nnoremap <leader><leader> /++<CR>:noh<CR>d2li

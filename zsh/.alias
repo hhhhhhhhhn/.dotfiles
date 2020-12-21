@@ -7,6 +7,8 @@ alias leaks="valgrind --leak-check=full --show-reachable=yes"
 alias cam="DISPLAY= mpv --quiet --vo=caca --untimed --profile=low-latency --no-cache /dev/video0"
 alias wolf3d="export WDIR=$(pwd) && cd ~/Games/wolf3d && ./run.sh ; cd $WDIR"
 alias battery="sudo tlp bat -q && sudo powertop -q --auto-tune && clear"
+alias clip="xclip -selection primary -o | xclip -selection clipboard"
+alias plot="gnuplot -p -e \"set datafile separator ','; set terminal dumb size \`tput cols\`, \`tput lines\`; set autoscale; plot '-' with lines notitle\""
 alias ls="ls --color"
 alias vi="vim"
 alias off="shutdown now"
@@ -23,10 +25,18 @@ r() {
 	mv "$1" -f "$HOME/.bin/"
 }
 
+clearbin() {
+	sudo rm -rf "$HOME/.bin/*"
+}
+
 sheet() {
 	rm /temp/ly.*
 	midi2ly $1 --output /tmp/ly.ly
 	lilypond -o sheet --pdf /tmp/ly.ly
 	zathura sheet.pdf
 	rm sheet.*
+}
+
+lc() {
+	alias | cut -f1 -d= ; hash -f; hash -v | cut -f 1 -d= ; typeset +f
 }

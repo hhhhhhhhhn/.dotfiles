@@ -1,3 +1,4 @@
 vim/.vim/bundle/*
 xmonad/.xmonad/*
 !xmonad/.xmonad/xmonad.hs
+vim/.vim/.netrwhist

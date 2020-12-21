@@ -52,5 +52,5 @@ URxvt.scrollBar: false
 urxvt.perl-ext-common: default,font-size,keyboard-select
 URxvt.keysym.Mod4-plus: font-size:increase
 URxvt.keysym.Mod4-minus: font-size:decrease
-URxvt.keysym.Mod4-0: font-size:reset
+! URxvt.keysym.Mod4-0: font-size:reset ! conflicts with dwm
 URxvt.keysym.Mod4-v: perl:keyboard-select:activate
