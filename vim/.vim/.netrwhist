@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/persona/Scripts'
+let g:netrw_dirhist_7='/home/persona/Youtube/xml'
 let g:netrw_dirhist_6='/home/persona/.dotfiles/.git'
 let g:netrw_dirhist_5='/home/persona/Projects/dwm'
 let g:netrw_dirhist_4='/home/persona/Projects'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_2='/home/persona/Texts'
 let g:netrw_dirhist_1='/home/persona/.xmonad'
 let g:netrw_dirhist_0='/home/persona/Scripts'
 let g:netrw_dirhist_9='/home/persona/Projects/mmenu'
-let g:netrw_dirhist_8='/home/persona/help'
-let g:netrw_dirhist_7='/home/persona/.xmonad'

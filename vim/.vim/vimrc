@@ -13,7 +13,6 @@ call vundle#begin()
 
 Plugin 'mattn/emmet-vim'
 Plugin 'ap/vim-css-color'
-Plugin 'preservim/nerdcommenter'
 Plugin 'dense-analysis/ale'
 
 call vundle#end()
@@ -43,21 +42,20 @@ function! CharAtCursor()
   return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
 endfunction
 
-function! Execute(command)
-  redir =>output
-  silent exec a:command
-  redir END
-  return output
-endfunction
-
 "nnoremap <esc> :noh<return><esc> (breaks)
 set backspace=indent,eol,start
 
-inoremap <down> <esc>gja
-inoremap <up> <esc>gka
-nnoremap <down> gj
-nnoremap <up> gk
+inoremap <expr> <down> ""
+inoremap <expr> <up> ""
+inoremap <expr> <left> ""
+inoremap <expr> <right> ""
+nnoremap <expr> <down> ""
+nnoremap <expr> <up> ""
+nnoremap <expr> <left> ""
+nnoremap <expr> <right> ""
 
 nnoremap <leader>h :noh
 
-nnoremap <leader><leader> /++<CR>:noh<CR>d2li
+nnoremap <leader><leader> /++<CR>:noh<CR>c2l
+
+" nnoremap <leader>a :!auto<space>%<CR> " breaks too
