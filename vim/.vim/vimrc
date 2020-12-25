@@ -11,7 +11,6 @@ let &rtp .= "," . $VIMHOME . "/bundle/Vundle.vim"
 
 call vundle#begin()
 
-Plugin 'mattn/emmet-vim'
 Plugin 'ap/vim-css-color'
 Plugin 'dense-analysis/ale'
 
@@ -57,5 +56,9 @@ nnoremap <expr> <right> ""
 nnoremap <leader>h :noh
 
 nnoremap <leader><leader> /++<CR>:noh<CR>c2l
+nnoremap <leader>n :bn!<CR>
+nnoremap <leader>N :bp!<CR>
+nnoremap <leader>D :bd<CR>
+nnoremap <leader>s :sh<CR>
 
 " nnoremap <leader>a :!auto<space>%<CR> " breaks too

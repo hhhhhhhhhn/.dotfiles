@@ -7,7 +7,7 @@ case $- in
 	*) exit 1;;
 esac
 
-set -o emacs
+set -o vi
 
 export TERM="xterm-256color"
 export TERMINAL="urxvt"
