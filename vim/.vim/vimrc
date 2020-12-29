@@ -31,7 +31,7 @@ set smartindent
 set nobackup
 set ffs=unix
 set ff=unix
-set hlsearch
+set nohlsearch
 
 let mapleader=" "
 colorscheme peachpuff

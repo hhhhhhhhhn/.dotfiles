@@ -18,7 +18,7 @@ inoremap ;css <link<space>rel="stylesheet"<space>src=""><space>++<esc>F"i
 
 function! ImageInsert(query)
 	eval system("img " . a:query)
-	r!xclip -selection primary -o
+	r!xclip -selection clipboard -o
 	execute "normal 0i<img alt=\"" . a:query . "\" href=\"\<esc>A\">"
 endfunction
 

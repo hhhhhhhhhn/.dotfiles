@@ -24,6 +24,10 @@ export COLORS_DIR="/home/persona/.config/colors"
 export YT_DIR="/home/persona/Youtube"
 export YT_FILE="/home/persona/Youtube/sub"
 
+function chpwd() {
+	ls --color=always
+}
+
 color solarized
 font
 clear

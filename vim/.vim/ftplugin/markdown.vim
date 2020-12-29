@@ -3,7 +3,7 @@ set linebreak
 
 function! ImageInsert(query)
 	eval system("img " . a:query)
-	r!xclip -selection primary -o
+	r!xclip -selection clipboard -o
 	execute "normal 0i![" . a:query . "](\<Esc>A)"
 endfunction
 
