@@ -13,18 +13,22 @@ call vundle#begin()
 
 Plugin 'ap/vim-css-color'
 Plugin 'dense-analysis/ale'
+Plugin 'lifepillar/vim-solarized8'
 
 call vundle#end()
 
 """ Plugin related section
 
+syntax enable
+set termguicolors
+set background=dark
+colorscheme solarized8
 
 """ Vanilla section
 let mapleader=" "
 
 filetype plugin on
 filetype indent on
-syntax on
 
 set autoindent
 set smartindent
@@ -34,7 +38,6 @@ set ff=unix
 set nohlsearch
 
 let mapleader=" "
-colorscheme peachpuff
 set tabstop=4 shiftwidth=4 colorcolumn=81
 
 function! CharAtCursor()
@@ -53,12 +56,13 @@ nnoremap <expr> <up> ""
 nnoremap <expr> <left> ""
 nnoremap <expr> <right> ""
 
-nnoremap <leader>h :noh
-
 nnoremap <leader><leader> /++<CR>:noh<CR>c2l
 nnoremap <leader>n :bn!<CR>
 nnoremap <leader>N :bp!<CR>
 nnoremap <leader>D :bd<CR>
 nnoremap <leader>s :sh<CR>
+" follow tag
+nnoremap <leader>f <C-]>
+nnoremap <leader>F <C-T>
 
 " nnoremap <leader>a :!auto<space>%<CR> " breaks too
