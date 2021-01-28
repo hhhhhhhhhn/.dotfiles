@@ -8,13 +8,6 @@
 #define S_base2         #eee8d5
 #define S_base3         #fdf6e3
 
-*background:            S_base03
-*foreground:            S_base0
-*fadeColor:             S_base03
-*cursorColor:           S_base1
-*pointerColorBackground:S_base01
-*pointerColorForeground:S_base1
-
 #define S_yellow        #b58900
 #define S_orange        #cb4b16
 #define S_red           #dc322f
@@ -23,6 +16,13 @@
 #define S_blue          #268bd2
 #define S_cyan          #2aa198
 #define S_green         #859900
+
+*background:            S_base03
+*foreground:            S_base0
+*fadeColor:             S_base03
+*cursorColor:           #f77ac6
+*pointerColorBackground:S_base01
+*pointerColorForeground:S_base1
 
 *color0:                S_base02
 *color8:                S_base02
@@ -52,5 +52,5 @@ URxvt.scrollBar: false
 urxvt.perl-ext-common: default,font-size,keyboard-select
 URxvt.keysym.Mod4-plus: font-size:increase
 URxvt.keysym.Mod4-minus: font-size:decrease
-! URxvt.keysym.Mod4-0: font-size:reset ! conflicts with dwm
+URxvt.keysym.Mod4-equals: font-size:reset
 URxvt.keysym.Mod4-v: perl:keyboard-select:activate

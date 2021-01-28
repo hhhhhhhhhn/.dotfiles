@@ -20,8 +20,14 @@ call vundle#end()
 """ Plugin related section
 
 syntax enable
-set termguicolors
 set background=dark
+if(!empty($DVTM))
+  set t_Co=16
+  let g:solarized_use16=1
+  let g:solarized_termtrans=1
+else
+  set termguicolors
+endif
 colorscheme solarized8
 
 """ Vanilla section
@@ -38,7 +44,7 @@ set ff=unix
 set nohlsearch
 
 let mapleader=" "
-set tabstop=4 shiftwidth=4 colorcolumn=81
+set tabstop=4 shiftwidth=4 colorcolumn=81,121
 
 function! CharAtCursor()
   return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
@@ -66,3 +72,4 @@ nnoremap <leader>f <C-]>
 nnoremap <leader>F <C-T>
 
 " nnoremap <leader>a :!auto<space>%<CR> " breaks too
+inoremap jj <esc>

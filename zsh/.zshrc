@@ -18,11 +18,13 @@ export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts"
 export EDITOR="vim"
 export LESS="-+S "
 
-export NOTES_DIR="/home/persona/Notes"
-export TODO_FILE="/home/persona/Notes/todo.txt"
-export COLORS_DIR="/home/persona/.config/colors"
-export YT_DIR="/home/persona/Youtube"
-export YT_FILE="/home/persona/Youtube/sub"
+export NOTES_DIR="$HOME/Notes"
+export TODO_FILE="$HOME/Notes/todo.txt"
+export COLORS_DIR="$HOME/.config/colors"
+export YT_DIR="$HOME/Youtube"
+export YT_FILE="$HOME/Youtube/sub"
+
+export HISTFILE="$HOME/.zhist"
 
 function chpwd() {
 	ls --color=always

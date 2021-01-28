@@ -1,7 +1,7 @@
 #!/bin/sh
 alias com="git add . && git commit -m"
 alias push="git push"
-alias ok="if ping -c 1 8.8.8.8 >/dev/null 2>&1; then echo 'OK'; else echo 'NOT OK'; fi"
+alias ok="if ping -W 3 -c 1 8.8.8.8 >/dev/null 2>&1; then echo 'OK'; else echo 'NOT OK'; fi"
 alias spot='if ! ps aux | grep "[s]potifyd"; then spotifyd --no-daemon & disown $!; fi; clear; spt; clear; pkill spotifyd'
 alias leaks="valgrind --leak-check=full --show-reachable=yes"
 alias cam="DISPLAY= mpv --quiet --vo=caca --untimed --profile=low-latency --no-cache /dev/video0"
