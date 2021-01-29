@@ -30,13 +30,15 @@ function chpwd() {
 	ls --color=always
 }
 
-color solarized
-font
-clear
-
 [ -f ~/.alias ] && . ~/.alias
 [ -f ~/.zlocal ] && . ~/.zlocal
 
-[ -z $DISPLAY ] && [ `tty` = "/dev/tty1" ] && x
+if [ -z $DISPLAY ] && [ `tty` = "/dev/tty1" ]; then
+	x
+else
+	color solarized
+	font
+	clear
+fi
 
 true
