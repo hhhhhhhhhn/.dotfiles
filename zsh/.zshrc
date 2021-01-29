@@ -35,9 +35,10 @@ function chpwd() {
 
 if [ -z $DISPLAY ] && [ `tty` = "/dev/tty1" ]; then
 	x
-else
+elif tty | grep tty; then
 	color solarized
 	font
+	export NCURSES_NO_UTF8_ACS=1
 	clear
 fi
 
