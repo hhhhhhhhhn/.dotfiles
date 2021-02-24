@@ -21,13 +21,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias fbrec="ffmpeg -f fbdev -i /dev/fb0 -r 5 -c:v libx264 -b:v 500k out.avi"
 
-rm () {
-	mv -f "$1" "$HOME/.bin/"
-}
-
-clearbin() {
-	sudo rm -rf "$HOME/.bin/*"
-}
+# sudo pacman -S trash-cli
+trash >/dev/null 2>&1
+[ "$?" = 2 ] && alias rm="trash"
 
 sheet() {
 	rm /temp/ly.*
