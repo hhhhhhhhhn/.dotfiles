@@ -34,8 +34,8 @@ function chpwd() {
 [ -f ~/.zlocal ] && . ~/.zlocal
 
 if [ -z $DISPLAY ] && [ `tty` = "/dev/tty1" ]; then
-	x
-elif tty | grep tty; then
+	x > /dev/null 2>&1
+elif tty | grep tty > /dev/null; then
 	color solarized
 	font
 	export NCURSES_NO_UTF8_ACS=1

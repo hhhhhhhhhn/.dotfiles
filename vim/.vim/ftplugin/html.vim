@@ -14,7 +14,7 @@ endfor
 
 inoremap ;a <a<space>href="">++</a><space>++<esc>F"i
 inoremap ;img <img<space>src=""<space>alt="++"><space>++<esc>3F"i
-inoremap ;css <link<space>rel="stylesheet"<space>src=""><space>++<esc>F"i
+inoremap ;css <link<space>rel="stylesheet"<space>href=""><space>++<esc>F"i
 
 function! ImageInsert(query)
 	eval system("img " . a:query)

@@ -19,10 +19,10 @@ alias lla="ls -lha"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias fbrec="ffmpeg -f fbdev -i /dev/fb0 -r 5 -c:v libx264 -b:v 500k out.avi"
 
-r() {
-	rm -rf "$HOME/.bin/$1"
-	mv "$1" -f "$HOME/.bin/"
+rm () {
+	mv -f "$1" "$HOME/.bin/"
 }
 
 clearbin() {
