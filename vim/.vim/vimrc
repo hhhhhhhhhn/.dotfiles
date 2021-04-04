@@ -50,6 +50,8 @@ function! CharAtCursor()
   return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
 endfunction
 
+set belloff=all
+
 "nnoremap <esc> :noh<return><esc> (breaks)
 set backspace=indent,eol,start
 
@@ -73,3 +75,5 @@ nnoremap <leader>F <C-T>
 
 " nnoremap <leader>a :!auto<space>%<CR> " breaks too
 inoremap jj <esc>
+inoremap ;lt <
+inoremap ;gt >

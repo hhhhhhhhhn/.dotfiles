@@ -8,6 +8,15 @@ case $- in
 esac
 
 set -o vi
+unsetopt BEEP
+
+HISTFILE=~/.zhist
+HISTSIZE=5000
+SAVEHIST=5000
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_SPACE
+
+autoload -U colors
 
 export TERM="xterm-256color"
 export TERMINAL="urxvt"
@@ -15,7 +24,7 @@ export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{m
 
 export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export LESS="-+S "
 
 export NOTES_DIR="$HOME/Notes"
@@ -23,8 +32,6 @@ export TODO_FILE="$HOME/Notes/todo.txt"
 export COLORS_DIR="$HOME/.config/colors"
 export YT_DIR="$HOME/Youtube"
 export YT_FILE="$HOME/Youtube/sub"
-
-export HISTFILE="$HOME/.zhist"
 
 function chpwd() {
 	ls --color=always
