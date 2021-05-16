@@ -14,6 +14,7 @@ call vundle#begin()
 Plugin 'ap/vim-css-color'
 Plugin 'dense-analysis/ale'
 Plugin 'lifepillar/vim-solarized8'
+Plugin 'vimwiki/vimwiki'
 
 call vundle#end()
 
@@ -31,8 +32,6 @@ endif
 colorscheme solarized8
 
 """ Vanilla section
-set mouse=a
-
 let mapleader=" "
 
 filetype plugin on
@@ -43,6 +42,7 @@ set smartindent
 set nobackup
 set ffs=unix
 set ff=unix
+set mouse=a
 set nohlsearch
 
 let mapleader=" "
@@ -51,8 +51,6 @@ set tabstop=4 shiftwidth=4 colorcolumn=81,121
 function! CharAtCursor()
   return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
 endfunction
-
-set belloff=all
 
 "nnoremap <esc> :noh<return><esc> (breaks)
 set backspace=indent,eol,start
@@ -79,3 +77,20 @@ nnoremap <leader>F <C-T>
 inoremap jj <esc>
 inoremap ;lt <
 inoremap ;gt >
+
+" visual select stuff
+function! VisualNormalRecord()
+	normal 0
+	let g:selStart = getpos("'<")[1] + 1 " first line is not used
+	let g:selEnd = getpos("'>")[1]
+	normal q00
+endfunction
+
+function! VisualNormalRun()
+	normal 0q
+	let @0 = @0[:-2] . ""
+	call feedkeys(g:selStart . "ggV" . g:selEnd . "gg:normal @0\<CR>")
+endfunction
+
+vnoremap <leader>m :<C-U>call VisualNormalRecord()<CR>
+nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
