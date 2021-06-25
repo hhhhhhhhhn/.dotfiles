@@ -33,6 +33,8 @@ export COLORS_DIR="$HOME/.config/colors"
 export YT_DIR="$HOME/Youtube"
 export YT_FILE="$HOME/Youtube/sub"
 
+export GOPATH="$HOME/.local/go/:$HOME/Projects/go/"
+
 function chpwd() {
 	ls --color=always
 }

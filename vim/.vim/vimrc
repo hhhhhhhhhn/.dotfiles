@@ -7,16 +7,15 @@ endif
 """ Plugin section
 set nocompatible
 filetype off
-let &rtp .= "," . $VIMHOME . "/bundle/Vundle.vim"
 
-call vundle#begin()
+call plug#begin($VIMHOME . "/plugged")
 
-Plugin 'ap/vim-css-color'
-Plugin 'dense-analysis/ale'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'vimwiki/vimwiki'
+Plug 'ap/vim-css-color'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lifepillar/vim-solarized8'
+Plug 'vimwiki/vimwiki'
 
-call vundle#end()
+call plug#end()
 
 """ Plugin related section
 
@@ -30,6 +29,11 @@ else
   set termguicolors
 endif
 colorscheme solarized8
+
+let g:ale_completion_enabled=1
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_autoimport=1
+" set completeopt=menuone,menu,longest
 
 """ Vanilla section
 let mapleader=" "
@@ -94,3 +98,20 @@ endfunction
 
 vnoremap <leader>m :<C-U>call VisualNormalRecord()<CR>
 nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
+
+
+""""" COC """"""
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function s:show_documentation()
+	if (index(["vim", "help"], &filetype) >= 0)
+		execute "h ".expand("<cword>")
+	elseif (coc#rpc#ready())
+		call CocActionAsync("doHover")
+	else
+		execute "!" . &keywordprg . " " . expand("<cword>")
+	endif
+endfunction
