@@ -31,6 +31,11 @@ else
 endif
 colorscheme solarized8
 
+let g:ale_completion_enabled=1
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_autoimport=1
+" set completeopt=menuone,menu,longest
+
 """ Vanilla section
 let mapleader=" "
 
@@ -94,3 +99,18 @@ endfunction
 
 vnoremap <leader>m :<C-U>call VisualNormalRecord()<CR>
 nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
+
+"" Smart tab
+function! Tab()
+	let line = getline(".")
+	let charsUntilCursor = strpart(line, -1, col(".")+1)
+
+	let nonSpaces = matchstr(charsUntilCursor, "[^ \t]")
+
+	if (strlen(nonSpaces)==0)
+		return "\<tab>"
+	endif
+	return "\<C-N>"
+endfunction
+
+inoremap <expr> <tab> Tab()
