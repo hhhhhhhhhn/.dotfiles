@@ -73,9 +73,6 @@ nnoremap <leader>n :bn!<CR>
 nnoremap <leader>N :bp!<CR>
 nnoremap <leader>D :bd<CR>
 nnoremap <leader>s :sh<CR>
-" follow tag
-nnoremap <leader>f <C-]>
-nnoremap <leader>F <C-T>
 
 " nnoremap <leader>a :!auto<space>%<CR> " breaks too
 inoremap jj <esc>
@@ -103,6 +100,13 @@ nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
 """"" COC """"""
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+
+nmap <leader>r <Plug>(coc-rename)
+nmap <leader>f <Plug>(coc-definition)
+nmap <leader>F <C-O>
+
+xmap <leader>p <Plug>(coc-format-selected)
+nmap <leader>p <Plug>(coc-format-selected)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
