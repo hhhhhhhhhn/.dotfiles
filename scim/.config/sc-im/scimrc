@@ -1,0 +1,4 @@
+set overlap
+set xlsx_readformulas
+set ignorecase
+set autocalc
