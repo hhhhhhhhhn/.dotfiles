@@ -44,7 +44,7 @@
 
 ! General settings
 
-XTerm.termName: xterm-256color
+XTerm.termName: rxvt-unicode
 URxvt.scrollBar: false
 
 *font: xft:DejaVu Sans Mono:pixelsize=18
@@ -54,3 +54,5 @@ URxvt.keysym.Mod4-plus: font-size:increase
 URxvt.keysym.Mod4-minus: font-size:decrease
 URxvt.keysym.Mod4-equals: font-size:reset
 URxvt.keysym.Mod4-v: perl:keyboard-select:activate
+
+URxvt.keyboard-select.clipboard: true

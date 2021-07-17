@@ -101,7 +101,8 @@ nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
-nmap <leader>r <Plug>(coc-rename)
+nmap <leader>r :CocRestart<CR><CR>
+nmap <leader>R <Plug>(coc-rename)
 nmap <leader>f <Plug>(coc-definition)
 nmap <leader>F <C-O>
 

@@ -18,11 +18,11 @@ setopt HIST_IGNORE_SPACE
 
 autoload -U colors
 
-export TERM="xterm-256color"
+export TERM="rxvt-unicode-256color"
 export TERMINAL="urxvt"
 export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{magenta}]$ %b%F{reset}'
 
-export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts"
+export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/"
 
 export EDITOR="nvim"
 export LESS="-+S "
@@ -32,6 +32,8 @@ export TODO_FILE="$HOME/Notes/todo.txt"
 export COLORS_DIR="$HOME/.config/colors"
 export YT_DIR="$HOME/Youtube"
 export YT_FILE="$HOME/Youtube/sub"
+
+export DICTIONARY="$HOME/Texts/dict.txt"
 
 export GOPATH="$HOME/.local/go/:$HOME/Projects/go/"
 
