@@ -10,15 +10,16 @@ filetype off
 
 call plug#begin($VIMHOME . "/plugged")
 
-Plug 'ap/vim-css-color'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'vimwiki/vimwiki'
+Plug 'preservim/nerdtree'
+Plug 'vim-scripts/Drawit'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 call plug#end()
 
 """ Plugin related section
-
 syntax enable
 set background=dark
 if(!empty($DVTM))
@@ -33,7 +34,8 @@ colorscheme solarized8
 let g:ale_completion_enabled=1
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_autoimport=1
-" set completeopt=menuone,menu,longest
+
+let g:svelte_preprocessors = ["ts"]
 
 """ Vanilla section
 let mapleader=" "
@@ -41,6 +43,7 @@ let mapleader=" "
 filetype plugin on
 filetype indent on
 
+set noswapfile
 set autoindent
 set smartindent
 set nobackup
@@ -48,6 +51,7 @@ set ffs=unix
 set ff=unix
 set mouse=a
 set nohlsearch
+set nowrap
 
 let mapleader=" "
 set tabstop=4 shiftwidth=4 colorcolumn=81,121
@@ -95,6 +99,10 @@ endfunction
 
 vnoremap <leader>m :<C-U>call VisualNormalRecord()<CR>
 nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
+
+""""" NERDTree """"""
+nnoremap <leader>e :NERDTreeToggle<cr>
+nnoremap <leader>s :NERDTreeFind<cr>
 
 
 """"" COC """"""

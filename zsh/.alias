@@ -27,14 +27,5 @@ alias fbrec="ffmpeg -f fbdev -i /dev/fb0 -r 5 -c:v libx264 -b:v 500k out.avi"
 trash >/dev/null 2>&1
 [ "$?" = 2 ] && alias rm="trash"
 
-sheet() {
-	rm /temp/ly.*
-	midi2ly $1 --output /tmp/ly.ly
-	lilypond -o sheet --pdf /tmp/ly.ly
-	zathura sheet.pdf
-	rm sheet.*
-}
-
-lc() {
-	alias | cut -f1 -d= ; hash -f; hash -v | cut -f 1 -d= ; typeset +f
-}
+# sudo pacman -S doas
+doas true >/dev/null 2>&1 && alias sudo="doas"

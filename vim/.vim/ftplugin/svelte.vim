@@ -6,7 +6,7 @@ let g:boilerplate = $HOME."/.vim/boilerplates/html.html"
 inoremap ;; ;
 inoremap <expr> ;! "<esc>:r ".boilerplate."\n"
 
-let g:tags = split("p i b div h1 h2 h3 h4 h5 h6 span ul ol li")
+let g:tags = split("p i b div h1 h2 h3 h4 h5 h6 span ul ol li script")
 
 for tag in g:tags
 	execute substitute("inoremap ;_ <_></_><space>++<esc>2F>a", "_", tag, "g")

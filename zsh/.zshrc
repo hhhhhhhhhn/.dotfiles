@@ -18,13 +18,14 @@ setopt HIST_IGNORE_SPACE
 
 autoload -U colors
 
-export TERM="rxvt-unicode-256color"
-export TERMINAL="urxvt"
 export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{magenta}]$ %b%F{reset}'
 
 export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/"
 
+export TERMINAL="urxvt"
 export EDITOR="nvim"
+export BROWSER="qutebrowser"
+
 export LESS="-+S "
 
 export NOTES_DIR="$HOME/Notes"
