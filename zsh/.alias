@@ -15,17 +15,16 @@ alias fzy="fzy -l max"
 alias vi="nvim"
 alias off="shutdown now"
 alias colortest="msgcat --color=test"
-alias x="startx -- -nocursor"
 alias ll="ls -lh"
 alias lla="ls -lha"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias fbrec="ffmpeg -f fbdev -i /dev/fb0 -r 5 -c:v libx264 -b:v 500k out.avi"
+alias mocp="padsp mocp"
 
 # sudo pacman -S trash-cli
-trash >/dev/null 2>&1
-[ "$?" = 2 ] && alias rm="trash"
+command -v trash >/dev/null && alias rm="trash"
 
 # sudo pacman -S doas
-doas true >/dev/null 2>&1 && alias sudo="doas"
+command -v doas >/dev/null && alias sudo="doas"
