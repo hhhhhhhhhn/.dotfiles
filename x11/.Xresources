@@ -1,4 +1,5 @@
 ! Solarized-dark Xresources palette
+#define S_base04        #0B5163
 #define S_base03        #002b36
 #define S_base02        #073642
 #define S_base01        #586e75
@@ -24,8 +25,8 @@
 *pointerColorBackground:S_base01
 *pointerColorForeground:S_base1
 
-*color0:                S_base02
-*color8:                S_base02
+*color0:                S_base03
+*color8:                S_base04
 *color1:                S_red
 *color9:                S_red
 *color2:                S_green
@@ -38,8 +39,8 @@
 *color13:               S_magenta
 *color6:                S_cyan
 *color14:               S_cyan
-*color7:                S_base2
-*color15:               S_base3
+*color7:                S_base3
+*color15:               S_base2
 
 
 ! General settings

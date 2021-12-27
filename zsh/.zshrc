@@ -20,16 +20,23 @@ autoload -U colors
 
 export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{magenta}]$ %b%F{reset}'
 
+TMOUT=10
+
+TRAPALRM() {
+	zle reset-prompt
+}
+
 export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/"
 
 export TERMINAL="urxvt"
 export EDITOR="nvim"
-export BROWSER="qutebrowser"
+export BROWSER="brave"
+export PAGER="less -R"
 
 export LESS="-+S "
 
-export NOTES_DIR="$HOME/Notes"
-export TODO_FILE="$HOME/Notes/todo.txt"
+export TODO_FILE="$HOME/Texts/todo.txt"
+export FLASHCARD_FILE="$HOME/Texts/flashcard.txt"
 export COLORS_DIR="$HOME/.config/colors"
 export SCREENSHOT_DIR="$HOME/Images/Screenshots"
 export YT_DIR="$HOME/Youtube"

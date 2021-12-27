@@ -15,13 +15,16 @@ alias fzy="fzy -l max"
 alias vi="nvim"
 alias off="shutdown now"
 alias colortest="msgcat --color=test"
+alias bton='sudo systemctl start bluetooth && echo "power on\nscan on" | bluetoothctl'
+alias btoff='echo "scan off\npower off" | bluetoothctl && sudo systemctl stop bluetooth'
 alias ll="ls -lh"
 alias lla="ls -lha"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias fbrec="ffmpeg -f fbdev -i /dev/fb0 -r 5 -c:v libx264 -b:v 500k out.avi"
-alias mocp="padsp mocp"
+alias mocp="padsp mocp -R oss"
+alias jrnl=" jrnl" # don't save in history
 
 # sudo pacman -S trash-cli
 command -v trash >/dev/null && alias rm="trash"
