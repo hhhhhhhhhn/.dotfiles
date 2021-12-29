@@ -15,16 +15,47 @@ HISTSIZE=5000
 SAVEHIST=5000
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_SPACE
+setopt PROMPT_SUBST
 
 autoload -U colors
 
-export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{magenta}]$ %b%F{reset}'
+notification_number() {
+	num="$(wc -l /tmp/notifications | cut -d " " -f1)"
+	case "$num" in
+		0)
+			echo ""
+			;;
+		1)
+			echo "!"
+			;;
+		2)
+			echo "!!"
+			;;
+		3)
+			echo "!!!"
+			;;
+		4)
+			echo "!!!!"
+			;;
+		*)
+			echo "!!!!!"
+			;;
+	esac
+}
 
-TMOUT=10
+export PROMPT='%(?..%F{red}%? %f)%B%F{magenta}[%f%F{yellow}%T%f %F{cyan}%~%f%F{magenta}]$ %b%F{reset}'
+export RPROMPT='%B%F{yellow}$(notification_number)%F{reset}'
+
+TMOUT=60
 
 TRAPALRM() {
 	zle reset-prompt
 }
+
+notification_widget() {notifications; zle reset-prompt}
+zle -N notification_widget
+
+bindkey "^N" 'notification_widget'
 
 export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/"
 
