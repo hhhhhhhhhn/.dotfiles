@@ -28,3 +28,4 @@ function! Follow()
 endfunction
 
 nnoremap <CR> :call Follow()<CR>
+vnoremap <CR> c[<C-r>"](<<C-r>".md>)<ESC>
