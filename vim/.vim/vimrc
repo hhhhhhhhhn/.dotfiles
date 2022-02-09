@@ -37,6 +37,10 @@ let g:ale_completion_autoimport=1
 
 let g:svelte_preprocessors = ["ts"]
 
+let g:vimwiki_table_mappings = 0
+let g:vimwiki_list = [{'path': '~/Notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 """ Vanilla section
 let mapleader=" "
 

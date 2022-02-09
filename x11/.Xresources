@@ -48,7 +48,7 @@
 XTerm.termName: rxvt-unicode
 URxvt.scrollBar: false
 
-*font: xft:DejaVu Sans Mono:pixelsize=18
+*font: xft:DejaVu Sans Mono:pixelsize=18, xft: FreeSans
 
 urxvt.perl-ext-common: default,font-size,keyboard-select
 URxvt.keysym.Mod4-plus: font-size:increase

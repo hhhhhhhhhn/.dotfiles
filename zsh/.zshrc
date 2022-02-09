@@ -20,8 +20,11 @@ setopt PROMPT_SUBST
 autoload -U colors
 
 notification_number() {
-	num="$(wc -l /tmp/notifications | cut -d " " -f1)"
+	num="$(wc -l /tmp/notifications 2>/dev/null | cut -d " " -f1)"
 	case "$num" in
+		"")
+			echo ""
+			;;
 		0)
 			echo ""
 			;;
