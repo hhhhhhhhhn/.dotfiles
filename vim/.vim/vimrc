@@ -40,6 +40,7 @@ let g:svelte_preprocessors = ["ts"]
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [{'path': '~/Notes/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_ext2syntax = {".md": "markdown"}
 
 """ Vanilla section
 let mapleader=" "
