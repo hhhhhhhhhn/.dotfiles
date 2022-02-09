@@ -1,4 +1,5 @@
 set colorcolumn=-1
+set conceallevel=3
 set linebreak
 
 function! ImageInsert(query)
