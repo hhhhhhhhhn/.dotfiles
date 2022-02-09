@@ -12,7 +12,6 @@ call plug#begin($VIMHOME . "/plugged")
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lifepillar/vim-solarized8'
-Plug 'vimwiki/vimwiki'
 Plug 'preservim/nerdtree'
 Plug 'vim-scripts/Drawit'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
@@ -36,11 +35,6 @@ set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_autoimport=1
 
 let g:svelte_preprocessors = ["ts"]
-
-let g:vimwiki_table_mappings = 0
-let g:vimwiki_list = [{'path': '~/Notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_ext2syntax = {".md": "markdown"}
 
 """ Vanilla section
 let mapleader=" "
@@ -66,17 +60,7 @@ function! CharAtCursor()
   return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
 endfunction
 
-"nnoremap <esc> :noh<return><esc> (breaks)
 set backspace=indent,eol,start
-
-inoremap <expr> <down> ""
-inoremap <expr> <up> ""
-inoremap <expr> <left> ""
-inoremap <expr> <right> ""
-nnoremap <expr> <down> ""
-nnoremap <expr> <up> ""
-nnoremap <expr> <left> ""
-nnoremap <expr> <right> ""
 
 nnoremap <leader><leader> /++<CR>:noh<CR>c2l
 nnoremap <leader>n :bn!<CR>
@@ -84,10 +68,14 @@ nnoremap <leader>N :bp!<CR>
 nnoremap <leader>D :bd<CR>
 nnoremap <leader>s :sh<CR>
 
-" nnoremap <leader>a :!auto<space>%<CR> " breaks too
 inoremap jj <esc>
 inoremap ;lt <
 inoremap ;gt >
+
+""" Notes
+nnoremap <leader>w :edit ~/Notes/index.md<CR>
+autocmd BufRead,BufCreate ~/Notes/* so $VIMHOME/ftplugin/notes.vim
+"""
 
 " visual select stuff
 function! VisualNormalRecord()
