@@ -62,7 +62,7 @@ bindkey "^N" 'notification_widget'
 
 export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/"
 
-export TERMINAL="urxvt"
+export TERMINAL="st"
 export EDITOR="nvim"
 export BROWSER="brave"
 export PAGER="less -R"
