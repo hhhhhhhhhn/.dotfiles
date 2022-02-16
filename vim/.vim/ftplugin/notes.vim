@@ -5,6 +5,7 @@ let g:in_notes = 1
 
 set autochdir
 
+autocmd TermClose * if !v:event.status | call feedkeys("\n") | endif
 nnoremap <leader>l :tabnew<CR>:terminal search ~/Notes > /tmp/search<CR>:autocmd BufLeave <buffer> call feedkeys(":r! tomdlink </tmp/search\n")<CR>i
 nnoremap <leader>o :tabnew<CR>:terminal search ~/Notes > /tmp/search<CR>:autocmd BufLeave <buffer> call feedkeys(":execute 'edit ' . readfile('/tmp/search')[0]\n")<CR>i
 
