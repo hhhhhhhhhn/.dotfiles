@@ -10,17 +10,24 @@ filetype off
 
 call plug#begin($VIMHOME . "/plugged")
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'preservim/nerdtree'
 Plug 'vim-scripts/Drawit'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'folke/lsp-colors.nvim'
 
 call plug#end()
 
 """ Plugin related section
 syntax enable
 set background=dark
+
 if(!empty($DVTM))
   set t_Co=16
   let g:solarized_use16=1
@@ -28,11 +35,8 @@ if(!empty($DVTM))
 else
   set termguicolors
 endif
-colorscheme solarized8
 
-let g:ale_completion_enabled=1
-set omnifunc=ale#completion#OmniFunc
-let g:ale_completion_autoimport=1
+colorscheme solarized8
 
 let g:svelte_preprocessors = ["ts"]
 
@@ -56,28 +60,18 @@ set nowrap
 let mapleader=" "
 set tabstop=4 shiftwidth=4 colorcolumn=81,121
 
-function! CharAtCursor()
-  return strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
-endfunction
-
 set backspace=indent,eol,start
 
 nnoremap <leader><leader> /++<CR>:noh<CR>c2l
-nnoremap <leader>n :bn!<CR>
-nnoremap <leader>N :bp!<CR>
-nnoremap <leader>D :bd<CR>
-nnoremap <leader>s :sh<CR>
 
-inoremap jj <esc>
 inoremap ;lt <
 inoremap ;gt >
 
 """ Notes
 nnoremap <leader>w :edit ~/Notes/index.md<CR>
 autocmd BufRead,BufCreate ~/Notes/* so $VIMHOME/ftplugin/notes.vim
-"""
 
-" visual select stuff
+""" Visual select stuff
 function! VisualNormalRecord()
 	normal 0
 	let g:selStart = getpos("'<")[1] + 1 " first line is not used
@@ -99,26 +93,111 @@ nnoremap <leader>e :NERDTreeToggle<cr>
 nnoremap <leader>s :NERDTreeFind<cr>
 
 
-""""" COC """"""
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+""""" Lua  """"""
 
-nmap <leader>r :CocRestart<CR><CR>
-nmap <leader>R <Plug>(coc-rename)
-nmap <leader>f <Plug>(coc-definition)
-nmap <leader>F <C-O>
+lua << EOF
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-xmap <leader>p <Plug>(coc-format-selected)
-nmap <leader>p <Plug>(coc-format-selected)
+local lspconfig = require("lspconfig")
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+-- luasnip setup
+local luasnip = require "luasnip"
 
-function s:show_documentation()
-	if (index(["vim", "help"], &filetype) >= 0)
-		execute "h ".expand("<cword>")
-	elseif (coc#rpc#ready())
-		call CocActionAsync("doHover")
-	else
-		execute "!" . &keywordprg . " " . expand("<cword>")
-	endif
-endfunction
+-- nvim-cmp setup
+local cmp = require "cmp"
+cmp.setup {
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+	mapping = {
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		},
+		["<Tab>"] = function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end,
+		["<S-Tab>"] = function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end,
+	},
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+	},
+}
+
+local opts = { noremap=true, silent=true }
+local on_attach = function(client, bufnr)
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "K",         "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>",     "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>t",  "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>r",  "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>a",  "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>R",  "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>p",  "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+end
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { "clangd", "rust_analyzer", "pyright", "tsserver", "gopls" }
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup {
+		-- on_attach = my_custom_on_attach,
+		on_attach = on_attach,
+		capabilities = capabilities,
+	}
+end
+
+local signs = { Error = ">>", Warn = ">", Hint = "?", Info = "!" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "●"
+	}
+})
+
+require("lsp-colors").setup({
+	Error = "#dc322f",
+	Warning = "#b58900",
+	Information = "#0b5163",
+	Hint = "#073642"
+})
+EOF
