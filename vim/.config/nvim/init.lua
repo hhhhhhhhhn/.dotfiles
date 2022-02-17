@@ -1,101 +1,53 @@
-if has('win32') || has ('win64')
-  let $VIMHOME = $HOME . "/vimfiles"
-else
-  let $VIMHOME = $HOME . "/.vim"
-endif
+require("plugins")
 
-""" Plugin section
-set nocompatible
-filetype off
+local settings = {
+	compatible = false,
+	background = "dark",
+	termguicolors = true,
+	ignorecase = true,
+	swapfile = false,
+	autoindent = true,
+	smartindent = true,
+	backup = false,
+	ffs = "unix",
+	ff = "unix",
+	mouse = "a",
+	hlsearch = false,
+	wrap = false,
+	tabstop = 4,
+	shiftwidth = 4,
+	colorcolumn = "81,121",
+	backspace = "indent,eol,start",
+}
 
-call plug#begin($VIMHOME . "/plugged")
+vim.cmd("autocmd BufRead,BufCreate ~/Notes/* so ~/.config/nvim/ftplugin/notes.vim")
+vim.g.svelte_preprocessors = {"ts"}
+vim.g.mapleader = " "
 
-Plug 'lifepillar/vim-solarized8'
-Plug 'preservim/nerdtree'
-Plug 'vim-scripts/Drawit'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'folke/lsp-colors.nvim'
+for setting, value in pairs(settings) do
+	vim.o[setting] = value
+end
 
-call plug#end()
+local mapOpts = {noremap = true, silent = true}
+local maps = {
+	n = {
+		{"<leader><leader>", "/++<CR>:noh<CR>c2l"},
+		{"<leader>w", ":edit ~/Notes/index.md<CR>"},
+		{"<leader>e", ":NERDTreeToggle<CR>"},
+	},
+	i = {
+		{";lt", "<"},
+		{";gt", "<"},
+	},
+}
 
-""" Plugin related section
-syntax enable
-set background=dark
+for mode, maps in pairs(maps) do
+	for _, map in ipairs(maps) do
+		vim.api.nvim_set_keymap(mode, map[1], map[2], mapOpts)
+	end
+end
 
-if(!empty($DVTM))
-  set t_Co=16
-  let g:solarized_use16=1
-  let g:solarized_termtrans=1
-else
-  set termguicolors
-endif
-
-colorscheme solarized8
-
-let g:svelte_preprocessors = ["ts"]
-
-""" Vanilla section
-let mapleader=" "
-
-filetype plugin on
-filetype indent on
-
-set ignorecase
-set noswapfile
-set autoindent
-set smartindent
-set nobackup
-set ffs=unix
-set ff=unix
-set mouse=a
-set nohlsearch
-set nowrap
-
-let mapleader=" "
-set tabstop=4 shiftwidth=4 colorcolumn=81,121
-
-set backspace=indent,eol,start
-
-nnoremap <leader><leader> /++<CR>:noh<CR>c2l
-
-inoremap ;lt <
-inoremap ;gt >
-
-""" Notes
-nnoremap <leader>w :edit ~/Notes/index.md<CR>
-autocmd BufRead,BufCreate ~/Notes/* so $VIMHOME/ftplugin/notes.vim
-
-""" Visual select stuff
-function! VisualNormalRecord()
-	normal 0
-	let g:selStart = getpos("'<")[1] + 1 " first line is not used
-	let g:selEnd = getpos("'>")[1]
-	normal q00
-endfunction
-
-function! VisualNormalRun()
-	normal 0q
-	let @0 = @0[:-2] . ""
-	call feedkeys(g:selStart . "ggV" . g:selEnd . "gg:normal @0\<CR>")
-endfunction
-
-vnoremap <leader>m :<C-U>call VisualNormalRecord()<CR>
-nnoremap <leader>m :<C-U>call VisualNormalRun()<CR>
-
-""""" NERDTree """"""
-nnoremap <leader>e :NERDTreeToggle<cr>
-nnoremap <leader>s :NERDTreeFind<cr>
-
-
-""""" Lua  """"""
-
-lua << EOF
+-------------------------------- LSP section -----------------------------------
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
@@ -182,6 +134,11 @@ for _, lsp in ipairs(servers) do
 	}
 end
 
+----------------------------- Colors section -----------------------------------
+vim.cmd("colorscheme solarized8")
+vim.cmd("filetype plugin on")
+vim.cmd("filetype indent on")
+
 local signs = { Error = ">>", Warn = ">", Hint = "?", Info = "!" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
@@ -200,4 +157,3 @@ require("lsp-colors").setup({
 	Information = "#0b5163",
 	Hint = "#073642"
 })
-EOF
