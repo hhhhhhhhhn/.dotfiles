@@ -5,6 +5,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require("packer").startup(function() 
+	use 'wbthomason/packer.nvim'
 	use 'lifepillar/vim-solarized8'
 	use 'preservim/nerdtree'
 	use 'vim-scripts/Drawit'
