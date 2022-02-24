@@ -99,37 +99,36 @@ cmp.setup {
 		{ name = "luasnip" },
 		{ name = "buffer" },
 	},
+	experimental = {
+		ghost_text = true,
+	},
+	preselect = cmp.PreselectMode.None,
 }
-
-local opts = { noremap=true, silent=true }
-local on_attach = function(client, bufnr)
-	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-	
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "K",         "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>",     "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>t",  "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>r",  "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>a",  "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>R",  "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>p",  "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-end
-
 
 local lsp_installer = require("nvim-lsp-installer")
 
+
 lsp_installer.on_server_ready(function(server)
-	local opts = {}
-	server:setup(opts)
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	-- Mappings.
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.declaration()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.definition()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "K",         "<cmd>lua vim.lsp.buf.hover()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>",     "<cmd>lua vim.lsp.buf.signature_help()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>t",  "<cmd>lua vim.lsp.buf.type_definition()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>r",  "<cmd>lua vim.lsp.buf.rename()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>a",  "<cmd>lua vim.lsp.buf.code_action()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>R",  "<cmd>lua vim.lsp.buf.references()<CR>", mapOpts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>p",  "<cmd>lua vim.lsp.buf.formatting()<CR>", mapOpts)
+
+	server:setup({})
 end)
 
 ----------------------------- Colors section -----------------------------------
