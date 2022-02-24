@@ -32,7 +32,7 @@ local mapOpts = {noremap = true, silent = true}
 local maps = {
 	n = {
 		{"<leader><leader>", "/++<CR>:noh<CR>c2l"},
-		{"<leader>w", ":edit ~/Notes/index.md<CR>"},
+		{"<leader>ww", ":edit ~/Notes/index.md<CR>"},
 		{"<leader>e", ":NERDTreeToggle<CR>"},
 	},
 	i = {
@@ -124,15 +124,13 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>p",  "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { "clangd", "rust_analyzer", "pyright", "tsserver", "gopls" }
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup {
-		-- on_attach = my_custom_on_attach,
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-end
+
+local lsp_installer = require("nvim-lsp-installer")
+
+lsp_installer.on_server_ready(function(server)
+	local opts = {}
+	server:setup(opts)
+end)
 
 ----------------------------- Colors section -----------------------------------
 vim.cmd("colorscheme solarized8")
