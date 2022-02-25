@@ -50,5 +50,5 @@ function Follow()
 	vim.cmd("e " .. link)
 end
 
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua NotesSearch()<CR>", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("n", "<CR>", "<cmd>lua Follow()<CR>", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>lua Notes_Search()<CR>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap("n", "<CR>", "<cmd>lua Follow()<CR>", {noremap=true, silent=true})
