@@ -20,7 +20,7 @@ local settings = {
 	backspace = "indent,eol,start",
 }
 
-vim.cmd("autocmd BufRead,BufCreate ~/Notes/* so ~/.config/nvim/ftplugin/notes.vim")
+vim.cmd("autocmd BufRead,BufCreate ~/Notes/* luafile ~/.config/nvim/ftplugin/notes.lua")
 vim.g.svelte_preprocessors = {"ts"}
 vim.g.mapleader = " "
 
@@ -32,8 +32,10 @@ local mapOpts = {noremap = true, silent = true}
 local maps = {
 	n = {
 		{"<leader><leader>", "/++<CR>:noh<CR>c2l"},
-		{"<leader>ww", ":edit ~/Notes/index.md<CR>"},
+		{"<leader>nn", ":edit ~/Notes/index.md<CR>"},
 		{"<leader>e", ":NERDTreeToggle<CR>"},
+		{"<leader>o", ":Telescope live_grep<CR>"},
+		{"<leader>t", ":Telescope builtin<CR>"},
 	},
 	i = {
 		{";lt", "<"},
