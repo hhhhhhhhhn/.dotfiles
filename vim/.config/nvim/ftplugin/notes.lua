@@ -1,4 +1,6 @@
 vim.o.autochdir = true
+vim.o.spell = true
+vim.o.spelllang="es,en"
 
 local function relative_to(to, path)
 	local process = io.popen("realpath '" .. path .. "' --relative-to '" .. to .. "'")
