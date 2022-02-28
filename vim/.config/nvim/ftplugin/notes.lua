@@ -1,6 +1,10 @@
 vim.o.autochdir = true
 vim.o.spell = true
 vim.o.spelllang="es,en"
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.expandtab = true
 
 local function relative_to(to, path)
 	local process = io.popen("realpath '" .. path .. "' --relative-to '" .. to .. "'")
