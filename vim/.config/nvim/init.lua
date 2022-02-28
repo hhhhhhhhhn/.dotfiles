@@ -105,6 +105,10 @@ cmp.setup {
 	preselect = cmp.PreselectMode.None,
 }
 
+cmp.setup.filetype("markdown", {
+	enabled = false
+})
+
 local lsp_installer = require("nvim-lsp-installer")
 local on_attach = function(_, bufn)
 	vim.api.nvim_buf_set_option(bufn, "omnifunc", "v:lua.vim.lsp.omnifunc")
