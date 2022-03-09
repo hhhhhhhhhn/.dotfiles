@@ -20,7 +20,7 @@ local settings = {
 	backspace = "indent,eol,start",
 }
 
-vim.cmd("autocmd BufRead,BufCreate ~/Notes/* luafile ~/.config/nvim/ftplugin/notes.lua")
+vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua")
 vim.g.svelte_preprocessors = {"ts"}
 vim.g.mapleader = " "
 
