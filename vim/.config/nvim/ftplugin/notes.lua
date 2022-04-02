@@ -25,8 +25,8 @@ function Notes_Search()
 			local function insertLink()
 				local selected = require("telescope.actions.state").get_selected_entry()
 				local relative_path = relative_to(note_dir, selected.cwd .. "/" .. selected.filename)
-				vim.api.nvim_buf_set_text(original_bufn, row-1, col+1, row-1, col+1, {"[](<" .. relative_path .. ">)"})
-				vim.api.nvim_win_set_cursor(original_win, {row, col+3})
+				vim.api.nvim_buf_set_text(original_bufn, row-1, col, row-1, col, {"[](<" .. relative_path .. ">)"})
+				vim.api.nvim_win_set_cursor(original_win, {row, col+2})
 				require("telescope.actions").close(bufn)
 			end
 
