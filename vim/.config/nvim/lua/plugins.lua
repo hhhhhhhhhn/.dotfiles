@@ -18,6 +18,7 @@ return require("packer").startup(function(use)
 	use 'folke/lua-dev.nvim'
 	use 'folke/lsp-colors.nvim'
 	use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}} }
+	use 'junegunn/vim-easy-align'
 
 	if packer_bootstrap then
 		require('packer').sync()

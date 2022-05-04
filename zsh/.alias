@@ -15,6 +15,7 @@ alias fzy="fzy -l max"
 alias vi="nvim"
 alias off="shutdown now"
 alias colortest="msgcat --color=test"
+alias cal="cal -m"
 alias bton='sudo systemctl start bluetooth && echo "power on\nscan on" | bluetoothctl'
 alias btoff='echo "scan off\npower off" | bluetoothctl && sudo systemctl stop bluetooth'
 alias ll="ls -lh"

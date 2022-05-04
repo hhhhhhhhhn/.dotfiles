@@ -43,6 +43,7 @@ local maps = {
 	},
 }
 
+vim.cmd("xmap ga <Plug>(EasyAlign)")
 for mode, mapList in pairs(maps) do
 	for _, map in ipairs(mapList) do
 		vim.api.nvim_set_keymap(mode, map[1], map[2], mapOpts)
