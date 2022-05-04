@@ -17,6 +17,7 @@ return require("packer").startup(function(use)
 	use 'L3MON4D3/LuaSnip'
 	use 'folke/lua-dev.nvim'
 	use 'folke/lsp-colors.nvim'
+	use 'evanleck/vim-svelte'
 	use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}} }
 	use 'junegunn/vim-easy-align'
 
