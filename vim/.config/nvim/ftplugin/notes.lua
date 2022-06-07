@@ -5,6 +5,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
+vim.opt_local.spellfile = os.getenv("HOME") .. "/Notes/vimspell.utf-8.add"
 
 local function relative_to(to, path)
 	local process = io.popen("realpath '" .. path .. "' --relative-to '" .. to .. "'")
