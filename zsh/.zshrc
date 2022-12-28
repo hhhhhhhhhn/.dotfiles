@@ -80,6 +80,14 @@ export DICTIONARY="$HOME/Texts/dict.txt"
 
 export GOPATH="$HOME/.local/go/:$HOME/Projects/go/"
 
+export npm_config_prefix="$HOME/.local"
+
+export _JAVA_AWT_WM_NONREPARENTING=1 # Prevents blank screen in android studio
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+export MORNING_PROMPT="$HOME/.morning"
+
 function chpwd() {
 	ls --color=always
 }
@@ -96,4 +104,5 @@ elif tty | grep tty > /dev/null; then
 	clear
 fi
 
+morningprompt
 true
