@@ -137,6 +137,8 @@ lsp_installer.on_server_ready(function(server)
 
 	if server.name == "sumneko_lua" then
 		opts.settings = require("lua-dev").setup().settings
+	elseif server.name == "emmet_ls" then
+		opts.settings = {filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }}
 	end
 
 	-- Mappings.

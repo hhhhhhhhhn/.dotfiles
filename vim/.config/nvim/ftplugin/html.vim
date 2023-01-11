@@ -1,7 +1,7 @@
 set colorcolumn=-1
 set linebreak
 
-let g:boilerplate = $HOME."/.vim/boilerplates/html.html"
+let g:boilerplate = $HOME."/.nvim/boilerplates/html.html"
 
 inoremap ;; ;
 inoremap <expr> ;! "<esc>:r ".boilerplate."\n"
