@@ -27,6 +27,7 @@ alias fbrec="ffmpeg -f fbdev -i /dev/fb0 -r 5 -c:v libx264 -b:v 500k out.avi"
 alias mocp="padsp mocp -R oss"
 alias jrnl=" jrnl" # don't save in history
 alias bc="(echo 'scale=100' && rlwrap cat) | bc -l"
+alias hledger="hledger --infer-equity" # Note: Using "Conversion with explicit cost"
 
 # sudo pacman -S trash-cli
 command -v trash >/dev/null && alias rm="trash"

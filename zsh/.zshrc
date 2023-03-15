@@ -86,7 +86,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1 # Prevents blank screen in android studio
 export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-export MORNING_PROMPT="$HOME/.morning"
+export MORNING_COMMAND="echo Good day!"
+
+export LEDGER_FILE="$HOME/.hledger/main.journal"
 
 function chpwd() {
 	ls --color=always
