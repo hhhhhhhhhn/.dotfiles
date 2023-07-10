@@ -13,6 +13,7 @@ unsetopt BEEP
 HISTFILE=~/.zhist
 HISTSIZE=5000
 SAVEHIST=5000
+bindkey "^R" history-incremental-search-backward
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt PROMPT_SUBST
@@ -66,6 +67,7 @@ export TERMINAL="st"
 export EDITOR="nvim"
 export BROWSER="brave"
 export PAGER="less -R"
+export XDG_CURRENT_DESKTOP="dwm"
 
 export LESS="-+S "
 

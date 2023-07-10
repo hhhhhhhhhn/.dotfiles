@@ -3,3 +3,4 @@ xmonad/.xmonad/*
 *packer_compiled.lua
 !xmonad/.xmonad/xmonad.hs
 *.netrwhist
+*cache.db*

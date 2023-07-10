@@ -20,7 +20,10 @@ local settings = {
 	backspace = "indent,eol,start",
 }
 
-vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua") vim.g.svelte_preprocessors = {"ts"} vim.g.mapleader = " "
+vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua")
+vim.g.svelte_preprocessors = {"ts"}
+vim.g.mapleader = " "
+
 for setting, value in pairs(settings) do
 	vim.o[setting] = value end
 local mapOpts = {noremap = true, silent = true}
@@ -109,10 +112,6 @@ cmp.setup {
 	preselect = cmp.PreselectMode.None,
 }
 
-cmp.setup.filetype("markdown", {
-	enabled = false
-})
-
 require("neodev").setup()
 
 local mason = require("mason")
@@ -120,7 +119,9 @@ mason.setup{}
 local masonlsp = require("mason-lspconfig")
 masonlsp.setup{}
 
-local on_attach = function(_, bufn)
+local on_attach = function(client, bufn)
+	client.server_capabilities.semanticTokensProvider = nil
+
 	vim.api.nvim_buf_set_option(bufn, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	vim.api.nvim_buf_set_keymap(bufn, "n", "<leader>F", "<cmd>lua vim.lsp.buf.declaration()<CR>", mapOpts)
@@ -143,23 +144,6 @@ end
 local lspconfig = require("lspconfig")
 lspconfig.ccls.setup{on_attach=on_attach}
 
--- local configs = require("lspconfig.configs")
--- -- Check if the config is already defined (useful when reloading this file)
--- if not configs.intercept then
--- 	configs.intercept = {
--- 		default_config = {
--- 		cmd = {"/usr/bin/node", "/home/persona/Projects/lsp/dist/index.js"},
--- 		filetypes = {"rust"},
--- 		root_dir = function(fname)
--- 			return lspconfig.util.find_git_ancestor(fname)
--- 		end,
--- 		settings = {},
--- 	},
--- }
--- end
--- 
--- lspconfig.intercept.setup{}
-
 masonlsp.setup_handlers{
 	function(server_name)
 		lspconfig[server_name].setup{
@@ -173,18 +157,6 @@ masonlsp.setup_handlers{
 		}
 	end
 }
--- lsp_installer.on_server_ready(function(server)
--- 	-- Enable completion triggered by <c-x><c-o>
--- 	local opts = {on_attach = on_attach}
--- 
--- 	if server.name == "emmet_ls" then
--- 		opts.settings = {filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }}
--- 	end
--- 
--- 	-- Mappings.
--- 	server:setup(opts)
--- end)
-
 --- Codeium
 vim.g.codeium_no_map_tab = true
 

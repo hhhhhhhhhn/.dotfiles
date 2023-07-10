@@ -1,18 +1,10 @@
-vim.o.autochdir = true
-vim.o.spell = true
-vim.o.spelllang="es,en,de"
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = true
-vim.opt_local.spellfile = os.getenv("HOME") .. "/Notes/vimspell.utf-8.add"
-
 local function relative_to(to, path)
 	local process = io.popen("realpath '" .. path .. "' --relative-to '" .. to .. "'")
 	local line = process:read("l")
 	process:close()
 	return line
 end
+vim.opt_local.spellfile = os.getenv("HOME") .. "/Notes/vimspell.utf-8.add"
 
 function Notes_Search()
 	local note_dir = vim.fn.expand("%:h")
@@ -25,8 +17,8 @@ function Notes_Search()
 		attach_mappings = function (bufn, map)
 			local function insertLink()
 				local selected = require("telescope.actions.state").get_selected_entry()
-				local relative_path = relative_to(note_dir, selected.cwd .. "/" .. selected.filename)
-				vim.api.nvim_buf_set_text(original_bufn, row-1, col, row-1, col, {"[](<" .. relative_path .. ">)"})
+				local relative_path = relative_to(note_dir, selected.cwd .. "/" .. string.gsub(selected.filename, "%.md", ""))
+				vim.api.nvim_buf_set_text(original_bufn, row-1, col, row-1, col, {"[[" .. relative_path .. "]]"})
 				vim.api.nvim_win_set_cursor(original_win, {row, col+2})
 				require("telescope.actions").close(bufn)
 			end
@@ -38,63 +30,66 @@ function Notes_Search()
 	})
 end
 
-local md_link_start = "%]%(<?"
-local md_link_end = ">?%)"
-function Follow()
-	local row = vim.api.nvim_win_get_cursor(0)[1]
-	local line = vim.api.nvim_buf_get_lines(0, row-1, row, false)[1]
+local links = {}
+local registered = false
 
-	local start, finish = string.find(line, md_link_start .. ".-" .. md_link_end)
-	if start == nil then
-		vim.fn.feedkeys("gx")
+local function remove_prefix(input, prefix)
+	return string.sub(input, #prefix + 1)
+end
+
+links.setup = function()
+	if registered then
 		return
 	end
-
-	local link = string.sub(line, start, finish)
-	link = string.gsub(link, md_link_start, "")
-	link = string.gsub(link, md_link_end, "")
-
-	vim.cmd("e " .. link)
-end
-
-local md_list = "^%s*- "
-
-function Newline()
-	local row = vim.api.nvim_win_get_cursor(0)[1]
-	local line = vim.api.nvim_buf_get_lines(0, row-1, row, false)[1]
-
-	local start, finish = string.find(line, md_list)
-
-	local keys
-	-- Not in a list
-	if start == nil then
-		keys = "a\n"
-	elseif finish == #line then
-		keys = "hr A"
-	else
-		keys = "a\n- "
+	registered = true
+	local cmp = require("cmp")
+	local source = {}
+	source.new = function()
+		return setmetatable({}, {__index = source})
 	end
-	vim.fn.feedkeys(keys)
-end
-
-function ShiftNewline()
-	local row = vim.api.nvim_win_get_cursor(0)[1]
-	local line = vim.api.nvim_buf_get_lines(0, row-1, row, false)[1]
-	print(line)
-
-	local start, _ = string.find(line, md_list)
-	if start == nil then
-		vim.fn.feedkeys("a\n")
-		return
+	source.get_trigger_characters = function()
+		return { "[" }
 	end
-	vim.fn.feedkeys("a\n- ")
+	source.complete = function(self, request, callback)
+		local input = string.sub(request.context.cursor_before_line, request.offset - 1)
+		local prefix = string.sub(request.context.cursor_before_line, 1, request.offset - 1)
+		local items = {}
+		if vim.endswith(prefix, "[[") then
+			local root = vim.fn.expand("~/Notes/")
+			local files = vim.split(vim.fn.expand("~/Notes/**/*.md"), "\n")
+			for _, file in ipairs(files) do
+				local name = remove_prefix(file, root)
+				name = string.gsub(name, "%.md", "")
+				table.insert(items, {
+					label = name,
+					-- filterText = "FILTERTEXT",
+					textEdit = {
+						newText = "[[" .. name .. "]]",
+						range = {
+							start = {
+								line = request.context.cursor.row - 1,
+								character = request.context.cursor.col - 2 - #input,
+							},
+							["end"] = {
+								line = request.context.cursor.row - 1,
+								character = request.context.cursor.col - 1,
+							}
+						}
+					}
+				})
+			end
+		end
+
+		callback({items = items, isIncomplete = true})
+	end
+	cmp.register_source("notelinks", source.new())
+	cmp.setup.filetype("markdown", {
+		sources = {
+			{name = "notelinks"}
+		}
+	})
 end
+
+links.setup()
 
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>o", "<cmd>lua Notes_Search()<CR>", {noremap=true, silent=true})
-vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<cmd>lua Follow()<CR>", {noremap=true, silent=true})
-vim.api.nvim_buf_set_keymap(0, "v", "<CR>", "da[<C-r>\"](<<C-r>\".md>)<esc>", {noremap=true, silent=true})
-vim.api.nvim_buf_set_keymap(0, "i", "<CR>", "<esc><cmd>lua Newline()<CR>", {noremap=true, silent=true})
-vim.api.nvim_buf_set_keymap(0, "n", "o", "$<cmd>lua Newline()<CR>", {noremap=true, silent=true})
-vim.api.nvim_buf_set_keymap(0, "n", "O", "k$<cmd>lua Newline()<CR>", {noremap=true, silent=true})
-
-vim.api.nvim_buf_set_keymap(0, "v", "?", 'c_<C-r>"_<esc>', {noremap=true, silent=true})
