@@ -1,5 +1,10 @@
+vim.o.autochdir = true
+
 local function relative_to(to, path)
 	local process = io.popen("realpath '" .. path .. "' --relative-to '" .. to .. "'")
+	if not process then
+		return "ERROR: Could not run realpath"
+	end
 	local line = process:read("l")
 	process:close()
 	return line

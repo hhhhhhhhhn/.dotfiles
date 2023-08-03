@@ -86,11 +86,13 @@ export npm_config_prefix="$HOME/.local"
 
 export _JAVA_AWT_WM_NONREPARENTING=1 # Prevents blank screen in android studio
 export ANDROID_HOME="$HOME/Android/Sdk"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
 
 export MORNING_COMMAND="echo Good day!"
 
 export LEDGER_FILE="$HOME/.hledger/main.journal"
+
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 
 function chpwd() {
 	ls --color=always

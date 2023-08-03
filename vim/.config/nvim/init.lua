@@ -21,6 +21,7 @@ local settings = {
 }
 
 vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua")
+vim.cmd("au BufRead,BufNewFile *.njk set filetype=html")
 vim.g.svelte_preprocessors = {"ts"}
 vim.g.mapleader = " "
 

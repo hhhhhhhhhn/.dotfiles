@@ -1,10 +1,12 @@
-vim.o.autochdir = true
-vim.o.spell = true
-vim.o.spelllang="es,en,de"
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = true
+vim.wo.spell = true
+vim.bo.spelllang="es,en,de"
+vim.bo.tabstop = 2
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2
+vim.bo.expandtab = true
+vim.wo.colorcolumn=-1
+vim.wo.conceallevel=3
+vim.wo.linebreak=true
 
 local md_link_start = "%]%(<?"
 local md_link_end = ">?%)"
