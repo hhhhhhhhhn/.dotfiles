@@ -29,6 +29,7 @@ alias jrnl=" jrnl" # don't save in history
 alias bc="(echo 'scale=100' && rlwrap cat) | bc -l"
 alias hledger="hledger --infer-equity" # Note: Using "Conversion with explicit cost"
 alias info="info --vi-keys"
+alias rm="trash"
 
 launchNNN() {
 	NNN_PLUG='x:!launch terminxwd "nvim $f1"' nnn
@@ -36,8 +37,6 @@ launchNNN() {
 
 alias nnn=launchNNN
 
-# sudo pacman -S trash-cli
-command -v trash >/dev/null && alias rm="trash"
 
 # sudo pacman -S doas
 command -v doas >/dev/null && alias sudo="doas"
