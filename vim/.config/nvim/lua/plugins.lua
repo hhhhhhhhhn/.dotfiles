@@ -21,7 +21,6 @@ return require("packer").startup(function(use)
 	use {"rcarriga/nvim-dap-ui", requires="mfussenegger/nvim-dap"}
 	use "leoluz/nvim-dap-go"
 	use {"nvim-telescope/telescope.nvim", requires = {{"nvim-lua/plenary.nvim"}} }
-	use "junegunn/vim-easy-align"
 	use "folke/neodev.nvim"
 	use "ledger/vim-ledger"
 	use {
