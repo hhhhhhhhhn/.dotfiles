@@ -7,6 +7,7 @@ vim.bo.expandtab = true
 vim.wo.colorcolumn=-1
 vim.wo.conceallevel=3
 vim.wo.linebreak=true
+vim.bo.textwidth=80
 
 local md_link_start = "%]%(<?"
 local md_link_end = ">?%)"

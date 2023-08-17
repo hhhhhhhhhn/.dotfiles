@@ -95,6 +95,39 @@ links.setup = function()
 	})
 end
 
+local name_pattern = ".*/(.*)%.md"
+function Get_backlinks()
+	local file = vim.api.nvim_buf_get_name(0)
+	local name = string.match(file, name_pattern)
+	local process = io.popen("./backlinks " .. name)
+	if not process then
+		return "ERROR: Could not run realpath"
+	end
+	local lines = {}
+	while true do
+		local line = process:read("*l")
+		if not line then
+			break
+		end
+		table.insert(lines, line)
+	end
+	process:close()
+	return lines
+end
+
+function Print_backlinks()
+	local backlinks = Get_backlinks()
+	if type(backlinks) == "string" then
+		vim.print("Could not get backlinks, ", backlinks)
+		return
+	end
+	vim.ui.select(backlinks, {prompt = "Follow:"}, function(chosen)
+		vim.cmd("edit " .. chosen .. ".md")
+	end)
+end
+
+vim.api.nvim_create_user_command("Backlinks", Print_backlinks, {})
+
 links.setup()
 
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>o", "<cmd>lua Notes_Search()<CR>", {noremap=true, silent=true})
