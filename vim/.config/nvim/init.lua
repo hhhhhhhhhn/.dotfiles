@@ -18,6 +18,8 @@ local settings = {
 	shiftwidth = 4,
 	colorcolumn = "81,121",
 	backspace = "indent,eol,start",
+	list = true,
+	listchars= "trail: "
 }
 
 vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua")
@@ -196,6 +198,9 @@ end
 require("dap-go").setup()
 
 ----------------------------- Colors section -----------------------------------
+vim.cmd("highlight ExtraWhitespace ctermbg=red guibg=red")
+vim.cmd("match ExtraWhitespace /\\s\\+$/")
+
 vim.cmd("colorscheme solarized8")
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
@@ -219,6 +224,7 @@ require("lsp-colors").setup({
 	Hint = "#073642"
 })
 
+
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
@@ -226,6 +232,7 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
+vim.api.nvim_set_hl(0, "NonText", { link = "Error" })
 vim.api.nvim_set_hl(0, "@variable", { link = "Normal" })
 vim.api.nvim_set_hl(0, "@punctuation", { link = "Normal" })
 vim.api.nvim_set_hl(0, "@text.literal", { link = "Normal" }) -- Markdown code
