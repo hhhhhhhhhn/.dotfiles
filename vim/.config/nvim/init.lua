@@ -196,9 +196,6 @@ end
 require("dap-go").setup()
 
 ----------------------------- Colors section -----------------------------------
-vim.cmd("highlight ExtraWhitespace ctermbg=red guibg=red")
-vim.cmd("match ExtraWhitespace /\\s\\+$/")
-
 vim.cmd("colorscheme solarized8")
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
@@ -236,7 +233,14 @@ vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
 	end
 })
 
-vim.api.nvim_set_hl(0, "NonText", { link = "Error" })
+vim.api.nvim_create_autocmd("CursorMoved", {
+	callback = function()
+		local row = vim.api.nvim_win_get_cursor(0)[1]
+		vim.cmd("match Trailing /\\%<" .. row .. "l\\s\\+$\\|\\%>" .. row .. "l\\s\\+$/")
+	end
+})
+
+vim.api.nvim_set_hl(0, "Trailing", { link = "Error" })
 vim.api.nvim_set_hl(0, "@variable", { link = "Normal" })
 vim.api.nvim_set_hl(0, "@punctuation", { link = "Normal" })
 vim.api.nvim_set_hl(0, "@text.literal", { link = "Normal" }) -- Markdown code
