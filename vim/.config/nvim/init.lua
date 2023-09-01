@@ -18,8 +18,6 @@ local settings = {
 	shiftwidth = 4,
 	colorcolumn = "81,121",
 	backspace = "indent,eol,start",
-	list = true,
-	listchars= "trail: "
 }
 
 vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua")
@@ -230,6 +228,12 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		additional_vim_regex_highlighting = false,
 	},
+})
+
+vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
+	callback = function()
+		vim.cmd("match Error /\\s\\+$/")
+	end
 })
 
 vim.api.nvim_set_hl(0, "NonText", { link = "Error" })
