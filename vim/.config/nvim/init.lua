@@ -229,14 +229,19 @@ require("nvim-treesitter.configs").setup({
 
 vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
 	callback = function()
-		vim.cmd("match Error /\\s\\+$/")
+		vim.cmd("match Trailing /\\s\\+$/")
 	end
 })
 
-vim.api.nvim_create_autocmd("CursorMoved", {
+vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()
-		local row = vim.api.nvim_win_get_cursor(0)[1]
-		vim.cmd("match Trailing /\\%<" .. row .. "l\\s\\+$\\|\\%>" .. row .. "l\\s\\+$/")
+		vim.api.nvim_set_hl(0, "Trailing", { link = "Normal" })
+	end
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "Trailing", { link = "Error" })
 	end
 })
 
