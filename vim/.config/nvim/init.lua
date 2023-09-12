@@ -59,8 +59,13 @@ end
 -------------------------------- Encryption ------------------------------------
 function Encrypt()
 	local pass = vim.fn.inputsecret("Passphrase: ")
+	local conf = vim.fn.inputsecret("Confirm passphrase: ")
 	if pass == "" then
 		print("Please enter a password")
+		return
+	end
+	if pass ~= conf then
+		print("Passwords do not match")
 		return
 	end
 	vim.cmd("%!openssl enc -aes-256-cbc  -pbkdf2 -a -salt -pass 'pass:" .. pass .. "'")
