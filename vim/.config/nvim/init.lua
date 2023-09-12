@@ -56,6 +56,28 @@ for mode, mapList in pairs(maps) do
 	end
 end
 
+-------------------------------- Encryption ------------------------------------
+function Encrypt()
+	local pass = vim.fn.inputsecret("Passphrase: ")
+	if pass == "" then
+		print("Please enter a password")
+		return
+	end
+	vim.cmd("%!openssl enc -aes-256-cbc  -pbkdf2 -a -salt -pass 'pass:" .. pass .. "'")
+end
+
+function Decrypt()
+	local pass = vim.fn.inputsecret("Passphrase: ")
+	if pass == "" then
+		print("Please enter a password")
+		return
+	end
+	vim.cmd("%!openssl enc -d -aes-256-cbc  -pbkdf2 -a -salt -pass 'pass:" .. pass .. "'")
+end
+
+vim.api.nvim_create_user_command("Encrypt", Encrypt, {})
+vim.api.nvim_create_user_command("Decrypt", Decrypt, {})
+
 -------------------------------- LSP section -----------------------------------
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
