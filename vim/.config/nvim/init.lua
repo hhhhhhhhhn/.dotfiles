@@ -183,6 +183,19 @@ masonlsp.setup_handlers{
 			on_attach = on_attach,
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }
 		}
+	end,
+	["rust_analyzer"] = function()
+		lspconfig.rust_analyzer.setup {
+			settings = {
+				["rust-analyzer"] = {
+					diagnostics = {
+						  enable = true,
+						  disabled = {"unresolved-proc-macro"},
+						  enableExperimental = true,
+					},
+				},
+		  	}
+		}
 	end
 }
 --- Codeium
@@ -254,7 +267,7 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
-vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 	callback = function()
 		vim.cmd("match Trailing /\\s\\+$/")
 	end
