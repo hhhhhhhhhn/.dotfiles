@@ -16,6 +16,7 @@ return require("packer").startup(function(use)
 	use "hrsh7th/cmp-nvim-lsp"
 	use "saadparwaiz1/cmp_luasnip"
 	use "L3MON4D3/LuaSnip"
+	use "ChrisWellsWood/roc.vim"
 	use "folke/lsp-colors.nvim"
 	use "evanleck/vim-svelte"
 	use {"rcarriga/nvim-dap-ui", requires="mfussenegger/nvim-dap"}
@@ -30,7 +31,6 @@ return require("packer").startup(function(use)
 			ts_update()
 		end,
 	}
-	use "sigmasd/deno-nvim"
 	use {
 		"Exafunction/codeium.vim",
 		config = function()

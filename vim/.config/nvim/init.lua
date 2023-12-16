@@ -201,8 +201,6 @@ masonlsp.setup_handlers{
 --- Codeium
 vim.g.codeium_no_map_tab = true
 
-require("deno-nvim")
-
 ------------------------------- Debuger ----------------------------------------
 local dapui = require "dapui"
 local dap = require "dap"
