@@ -172,6 +172,7 @@ end
 local lspconfig = require("lspconfig")
 lspconfig.ccls.setup{on_attach=on_attach}
 
+
 masonlsp.setup_handlers{
 	function(server_name)
 		lspconfig[server_name].setup{
@@ -198,45 +199,24 @@ masonlsp.setup_handlers{
 		}
 	end
 }
---- Codeium
+-- Adding custom lsp
+require("lspconfig.configs").rocls = {
+	default_config = {
+		cmd = {"roc_lang_server"},
+		filetypes = { "roc" },
+		root_dir = lspconfig.util.root_pattern(".git", "main.roc"),
+		settings = {}
+	}
+}
+
+lspconfig.rocls.setup{on_attach=on_attach}
+
 vim.g.codeium_no_map_tab = true
 
-------------------------------- Debuger ----------------------------------------
-local dapui = require "dapui"
-local dap = require "dap"
-
-dapui.setup({
-	icons = { expanded = "▾", collapsed = "▸", current_frame = "c" },
-	controls = {
-		icons = {
-			pause = "■",
-			play = "▶",
-			step_into = "↓",
-			step_over = "↷",
-			step_out = "↑",
-			step_back = "←",
-			run_last = "↻",
-			terminate = "☠",
-		}
-	}
-})
-
-dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-	dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-	dapui.close()
-end
-
-require("dap-go").setup()
-
------------------------------ Colors section -----------------------------------
 vim.cmd("colorscheme solarized8")
 vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
+
 
 local signs = { Error = ">>", Warn = ">", Hint = "?", Info = "!" }
 for type, icon in pairs(signs) do

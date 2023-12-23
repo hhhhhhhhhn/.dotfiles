@@ -19,8 +19,6 @@ return require("packer").startup(function(use)
 	use "ChrisWellsWood/roc.vim"
 	use "folke/lsp-colors.nvim"
 	use "evanleck/vim-svelte"
-	use {"rcarriga/nvim-dap-ui", requires="mfussenegger/nvim-dap"}
-	use "leoluz/nvim-dap-go"
 	use {"nvim-telescope/telescope.nvim", requires = {{"nvim-lua/plenary.nvim"}} }
 	use "folke/neodev.nvim"
 	use "ledger/vim-ledger"
