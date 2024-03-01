@@ -61,11 +61,11 @@ zle -N notification_widget
 
 bindkey "^N" 'notification_widget'
 
-export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/"
+export PATH="$PATH:/bin:$HOME/.local/bin:$HOME/Scripts:$HOME/.local/go/bin/:$HOME/.cargo/bin/"
 
 export TERMINAL="st"
 export EDITOR="nvim"
-export BROWSER="brave"
+export BROWSER="brave --password-store=basic"
 export PAGER="less -R"
 export XDG_CURRENT_DESKTOP="dwm"
 
@@ -85,7 +85,8 @@ export GOPATH="$HOME/.local/go/:$HOME/Projects/go/"
 export npm_config_prefix="$HOME/.local"
 
 export _JAVA_AWT_WM_NONREPARENTING=1 # Prevents blank screen in android studio
-export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_HOME="$HOME/.Android/Sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
 
 export MORNING_COMMAND="echo Good day!"

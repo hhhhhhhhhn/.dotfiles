@@ -185,19 +185,6 @@ masonlsp.setup_handlers{
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }
 		}
 	end,
-	["rust_analyzer"] = function()
-		lspconfig.rust_analyzer.setup {
-			settings = {
-				["rust-analyzer"] = {
-					diagnostics = {
-						  enable = true,
-						  disabled = {"unresolved-proc-macro"},
-						  enableExperimental = true,
-					},
-				},
-		  	}
-		}
-	end
 }
 -- Adding custom lsp
 require("lspconfig.configs").rocls = {
