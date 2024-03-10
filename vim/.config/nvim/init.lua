@@ -197,6 +197,7 @@ require("lspconfig.configs").rocls = {
 }
 
 lspconfig.rocls.setup{on_attach=on_attach}
+lspconfig.dartls.setup{on_attach=on_attach}
 
 vim.g.codeium_no_map_tab = true
 
