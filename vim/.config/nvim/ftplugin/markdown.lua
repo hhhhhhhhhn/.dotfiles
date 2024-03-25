@@ -72,6 +72,34 @@ function ShiftNewline()
 	end
 	vim.fn.feedkeys("a\n- ")
 end
+
+local maps = {
+	["and"] = "∧",
+	["or"] = "∨",
+	["xor"] = "⊻",
+	["el"] = "∈",
+	["nel"] = "∉",
+	["not"] = "¬",
+	["all"] = "∀",
+	["ex"] = "∃",
+	["nex"] = "∄",
+	["imp"] = "→",
+	["iff"] = "↔",
+	["un"] = "∪",
+	["int"] = "∩",
+	["sub"] = "⊂",
+	["sup"] = "⊃",
+	["del"] = "Δ",
+	["nat"] = "ℕ",
+	["rat"] = "ℚ",
+	["real"] = "ℝ",
+	["whole"] = "ℤ",
+}
+
+for source, dest in pairs(maps) do
+	vim.api.nvim_buf_set_keymap(0, "i", "<C-c>" .. source, dest, {noremap=true, silent=true})
+end
+
 vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<cmd>lua Follow()<CR>", {noremap=true, silent=true})
 vim.api.nvim_buf_set_keymap(0, "v", "<CR>", "da[<C-r>\"](<<C-r>\".md>)<esc>", {noremap=true, silent=true})
 vim.api.nvim_buf_set_keymap(0, "i", "<CR>", "<esc><cmd>lua Newline()<CR>", {noremap=true, silent=true})
