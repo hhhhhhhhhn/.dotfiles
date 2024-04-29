@@ -4,10 +4,8 @@ vim.bo.tabstop = 2
 vim.bo.shiftwidth = 2
 vim.bo.softtabstop = 2
 vim.bo.expandtab = true
-vim.wo.colorcolumn=-1
+vim.wo.colorcolumn=80
 vim.wo.conceallevel=3
-vim.wo.linebreak=true
-vim.bo.textwidth=80
 
 local md_link_start = "%]%(<?"
 local md_link_end = ">?%)"
@@ -86,14 +84,26 @@ local maps = {
 	["imp"] = "→",
 	["iff"] = "↔",
 	["un"] = "∪",
+	["Un"] = "⋃",
 	["int"] = "∩",
-	["sub"] = "⊂",
+	["Int"] = "⋂",
+	["sub"] = "⊆",
+	["nsub"] = "⊈",
 	["sup"] = "⊃",
 	["del"] = "Δ",
 	["nat"] = "ℕ",
 	["rat"] = "ℚ",
 	["real"] = "ℝ",
 	["whole"] = "ℤ",
+	["phi"] = "ϕ",
+	["empty"] = "∅",
+	["tri"] = "▵",
+	["mi"] = "````<left><left>",
+	["mb"] = "```math<CR>```<ESC>O",
+	["mul"] = "⨯",
+	["Sig"] = "Σ",
+	["comp"] = "∘",
+	["cong"] = "≡",
 }
 
 for source, dest in pairs(maps) do
