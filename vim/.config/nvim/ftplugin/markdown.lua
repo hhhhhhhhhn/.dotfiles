@@ -101,7 +101,7 @@ local maps = {
 	["mi"] = "````<left><left>",
 	["mb"] = "```math<CR>```<ESC>O",
 	["mul"] = "⨯",
-	["Sig"] = "Σ",
+	["Sig"] = "∑",
 	["comp"] = "∘",
 	["cong"] = "≡",
 }
