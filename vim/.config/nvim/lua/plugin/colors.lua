@@ -53,6 +53,9 @@ return {
 			vim.api.nvim_set_hl(0, "@markup.heading", { link = "@text.title" })
 			vim.api.nvim_set_hl(0, "@markup.link", { link = "@text.reference" })
 			vim.api.nvim_set_hl(0, "@markup.list", { link = "@text.reference" })
+			vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "@text.literal.markdown" })
+			vim.api.nvim_set_hl(0, "@markup.raw.block", { link = "@text.literal.markdown" })
+			vim.api.nvim_set_hl(0, "@label.markdown", { link = "@text.literal.markdown" })
 		end
 	},
 	{
