@@ -9,6 +9,7 @@ local function relative_to(to, path)
 	process:close()
 	return line
 end
+
 vim.opt_local.spellfile = os.getenv("HOME") .. "/Notes/vimspell.utf-8.add"
 
 function Notes_Search()

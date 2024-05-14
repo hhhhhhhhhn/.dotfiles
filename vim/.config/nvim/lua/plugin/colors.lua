@@ -35,7 +35,6 @@ return {
 			require("nvim-treesitter.configs").setup({
 				highlight = {
 					enable = true,
-					additional_vim_regex_highlighting = false,
 				},
 			})
 
@@ -50,6 +49,10 @@ return {
 			vim.api.nvim_set_hl(0, "@conceal.markdown_inline", { ctermfg = 242, fg = "#586e75" })
 			vim.api.nvim_set_hl(0, "@text.emphasis.markdown_inline", { italic = true })
 			vim.api.nvim_set_hl(0, "@text.strong.markdown_inline", { bold = true })
+
+			vim.api.nvim_set_hl(0, "@markup.heading", { link = "@text.title" })
+			vim.api.nvim_set_hl(0, "@markup.link", { link = "@text.reference" })
+			vim.api.nvim_set_hl(0, "@markup.list", { link = "@text.reference" })
 		end
 	},
 	{
