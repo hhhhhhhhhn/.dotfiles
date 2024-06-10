@@ -35,6 +35,7 @@ return {
 			require("nvim-treesitter.configs").setup({
 				highlight = {
 					enable = true,
+					additional_vim_regex_highlighting = true,
 				},
 			})
 
@@ -56,6 +57,10 @@ return {
 			vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "@text.literal.markdown" })
 			vim.api.nvim_set_hl(0, "@markup.raw.block", { link = "@text.literal.markdown" })
 			vim.api.nvim_set_hl(0, "@label.markdown", { link = "@text.literal.markdown" })
+
+			vim.api.nvim_set_hl(0, 'NormalFloat', { bg = "#063643" })
+			vim.api.nvim_set_hl(0, 'Normal', { bg = "None" })
+
 		end
 	},
 	{

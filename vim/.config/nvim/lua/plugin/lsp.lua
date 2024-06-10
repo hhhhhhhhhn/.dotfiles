@@ -67,6 +67,7 @@ return {
 
 			lspconfig.rocls.setup{on_attach=on_attach}
 			lspconfig.dartls.setup{on_attach=on_attach}
+			lspconfig.gleam.setup{on_attach=on_attach}
 		end
 	},
 	{
