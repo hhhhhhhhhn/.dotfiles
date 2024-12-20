@@ -28,7 +28,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({import = "plugin", change_detection = {enabled = false}})
+require("lazy").setup({import = "plugin", change_detection = {notify = false}})
 
 vim.cmd("autocmd BufRead,BufCreate,BufNewFile ~/Notes/** luafile ~/.config/nvim/ftplugin/notes.lua")
 

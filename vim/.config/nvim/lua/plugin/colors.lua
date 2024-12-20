@@ -39,6 +39,8 @@ return {
 				},
 			})
 
+			vim.filetype.add({extension = {templ = "templ"}})
+
 			vim.api.nvim_set_hl(0, "@variable", { link = "Normal" })
 			vim.api.nvim_set_hl(0, "@punctuation", { link = "Normal" })
 			vim.api.nvim_set_hl(0, "@text.literal", { link = "Normal" }) -- Markdown code
@@ -57,6 +59,8 @@ return {
 			vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "@text.literal.markdown" })
 			vim.api.nvim_set_hl(0, "@markup.raw.block", { link = "@text.literal.markdown" })
 			vim.api.nvim_set_hl(0, "@label.markdown", { link = "@text.literal.markdown" })
+
+			vim.api.nvim_set_hl(0, "@type.builtin", { link = "@type" })
 
 			vim.api.nvim_set_hl(0, 'NormalFloat', { bg = "#063643" })
 			vim.api.nvim_set_hl(0, 'Normal', { bg = "None" })
