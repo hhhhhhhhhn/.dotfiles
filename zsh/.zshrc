@@ -67,6 +67,8 @@ export TERMINAL="st"
 export EDITOR="nvim"
 export BROWSER="brave --password-store=basic"
 export PAGER="less -R"
+export TOP="btop"
+export COMPOSITOR="picom --no-fading-openclose --realtime"
 export XDG_CURRENT_DESKTOP="dwm"
 
 export LESS="-+S "
@@ -93,7 +95,7 @@ export MORNING_COMMAND="echo Good day!"
 
 export LEDGER_FILE="$HOME/.hledger/main.journal"
 
-export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+# export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 
 function chpwd() {
 	ls --color=always
@@ -113,6 +115,3 @@ fi
 
 morningprompt
 true
-
-# bun completions
-[ -s "/home/persona/.bun/_bun" ] && source "/home/persona/.bun/_bun"

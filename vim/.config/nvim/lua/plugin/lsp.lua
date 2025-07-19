@@ -41,19 +41,20 @@ return {
 				vim.api.nvim_buf_set_keymap(bufn, "n", "<space>p",  "<cmd>lua vim.lsp.buf.formatting()<CR>", mapOpts)
 			end
 
-			masonlsp.setup_handlers{
-				function(server_name)
-					lspconfig[server_name].setup{
-						on_attach = on_attach,
-					}
-				end,
-				["emmet_ls"] = function()
-					lspconfig.emmet_ls.setup{
-						on_attach = on_attach,
-						filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }
-					}
-				end,
-			}
+			-- TODO: Fix
+			-- masonlsp.setup_handlers{
+			-- 	function(server_name)
+			-- 		lspconfig[server_name].setup{
+			-- 			on_attach = on_attach,
+			-- 		}
+			-- 	end,
+			-- 	["emmet_ls"] = function()
+			-- 		lspconfig.emmet_ls.setup{
+			-- 			on_attach = on_attach,
+			-- 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }
+			-- 		}
+			-- 	end,
+			-- }
 
 			-- Adding custom lsp
 			require("lspconfig.configs").rocls = {
@@ -103,7 +104,6 @@ return {
 						elseif luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
 						else
-							vim.fn['codeium#Accept']()
 							fallback()
 						end
 					end,
