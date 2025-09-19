@@ -30,44 +30,6 @@ return {
 		end
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = true,
-				},
-			})
-
-			vim.filetype.add({extension = {templ = "templ"}})
-
-			vim.api.nvim_set_hl(0, "@variable", { link = "Normal" })
-			vim.api.nvim_set_hl(0, "@punctuation", { link = "Normal" })
-			vim.api.nvim_set_hl(0, "@text.literal", { link = "Normal" }) -- Markdown code
-			vim.api.nvim_set_hl(0, "@exception", { link = "Macro" })
-			vim.api.nvim_set_hl(0, "@function.macro", { link = "Macro" })
-			vim.api.nvim_set_hl(0, "@text.literal.markdown", { ctermfg = 242, fg = "#586e75" })
-			vim.api.nvim_set_hl(0, "@text.literal.markdown_inline", { ctermfg = 242, fg = "#586e75" })
-			vim.api.nvim_set_hl(0, "@conceal.markdown", { ctermfg = 242, fg = "#586e75" })
-			vim.api.nvim_set_hl(0, "@conceal.markdown_inline", { ctermfg = 242, fg = "#586e75" })
-			vim.api.nvim_set_hl(0, "@text.emphasis.markdown_inline", { italic = true })
-			vim.api.nvim_set_hl(0, "@text.strong.markdown_inline", { bold = true })
-
-			vim.api.nvim_set_hl(0, "@markup.heading", { link = "@text.title" })
-			vim.api.nvim_set_hl(0, "@markup.link", { link = "@text.reference" })
-			vim.api.nvim_set_hl(0, "@markup.list", { link = "@text.reference" })
-			vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { link = "@text.literal.markdown" })
-			vim.api.nvim_set_hl(0, "@markup.raw.block", { link = "@text.literal.markdown" })
-			vim.api.nvim_set_hl(0, "@label.markdown", { link = "@text.literal.markdown" })
-
-			vim.api.nvim_set_hl(0, "@type.builtin", { link = "@type" })
-
-			vim.api.nvim_set_hl(0, 'NormalFloat', { bg = "#063643" })
-			vim.api.nvim_set_hl(0, 'Normal', { bg = "None" })
-
-		end
-	},
-	{
 		"folke/lsp-colors.nvim",
 		config = function()
 			require("lsp-colors").setup({

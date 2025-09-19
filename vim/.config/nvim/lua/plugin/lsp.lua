@@ -41,19 +41,20 @@ return {
 				vim.api.nvim_buf_set_keymap(bufn, "n", "<space>p",  "<cmd>lua vim.lsp.buf.formatting()<CR>", mapOpts)
 			end
 
-			masonlsp.setup_handlers{
-				function(server_name)
-					lspconfig[server_name].setup{
-						on_attach = on_attach,
-					}
-				end,
-				["emmet_ls"] = function()
-					lspconfig.emmet_ls.setup{
-						on_attach = on_attach,
-						filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }
-					}
-				end,
-			}
+			-- TODO: Fix
+			-- masonlsp.setup_handlers{
+			-- 	function(server_name)
+			-- 		lspconfig[server_name].setup{
+			-- 			on_attach = on_attach,
+			-- 		}
+			-- 	end,
+			-- 	["emmet_ls"] = function()
+			-- 		lspconfig.emmet_ls.setup{
+			-- 			on_attach = on_attach,
+			-- 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }
+			-- 		}
+			-- 	end,
+			-- }
 
 			-- Adding custom lsp
 			require("lspconfig.configs").rocls = {
@@ -73,19 +74,12 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function ()
 			local cmp = require("cmp")
-			local luasnip = require("luasnip")
 			cmp.setup {
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
 				mapping = {
 					["<C-p>"] = cmp.mapping.select_prev_item(),
 					["<C-n>"] = cmp.mapping.select_next_item(),
@@ -100,18 +94,13 @@ return {
 					["<Tab>"] = function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
 						else
-							vim.fn['codeium#Accept']()
 							fallback()
 						end
 					end,
 					["<S-Tab>"] = function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
 						else
 							fallback()
 						end
@@ -119,7 +108,6 @@ return {
 				},
 				sources = {
 					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
 					{ name = "buffer" },
 				},
 				experimental = {
