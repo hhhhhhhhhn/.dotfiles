@@ -95,6 +95,7 @@ local maps = {
 	["rat"] = "ℚ",
 	["real"] = "ℝ",
 	["whole"] = "ℤ",
+	["cpx"] = "ℂ",
 	["phi"] = "ϕ",
 	["empty"] = "∅",
 	["tri"] = "▵",
@@ -104,6 +105,12 @@ local maps = {
 	["Sum"] = "∑",
 	["comp"] = "∘",
 	["cong"] = "≡",
+
+	["theta"] = "θ",
+	["omega"] = "ω",
+
+	["planck"] = "ħ",
+	["pi"] = "π",
 }
 
 for source, dest in pairs(maps) do

@@ -113,6 +113,3 @@ fi
 
 morningprompt
 true
-
-# bun completions
-[ -s "/home/persona/.bun/_bun" ] && source "/home/persona/.bun/_bun"
